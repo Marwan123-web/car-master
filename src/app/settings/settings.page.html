@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            {{ 'SETTINGS' | uppercase | translate}}
+        </ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs/more"></ion-back-button>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content id="settings">
+    <ion-list>
+        <ion-item lines="full" class="ion-activatable ion-focusable ripple-parent" detail="true" [routerLink]="['/tabs/settings/change-email']">
+            <ion-icon slot="start" name="mail-outline"></ion-icon>
+            <ion-label>
+                {{ 'CHANGEEMAIL' | translate}}
+            </ion-label>
+        </ion-item>
+        <ion-item lines="full" class="ion-activatable ion-focusable ripple-parent" detail="true" [routerLink]="['/tabs/settings/change-password']">
+            <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+            <ion-label>
+                {{ 'CHANGEPASSWORD' | translate}}
+            </ion-label>
+        </ion-item>
+        <ion-item lines="full" class="ion-activatable ion-focusable ripple-parent" (click)="logout()">
+            <ion-icon slot="start" name="log-out-outline"></ion-icon>
+            <ion-label>
+                {{ 'LOGOUT' | translate}}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

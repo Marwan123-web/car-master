@@ -1,0 +1,31 @@
+/* Without setting height the slides will take up the height of the slide's content */
+
+ion-slides {
+    height: 450px;
+}
+
+ion-content {
+    --background: #fff url('../../assets/img/car-inside.jpg') no-repeat center center / cover;
+}
+
+#img {
+    width: 250px!important;
+}
+
+ion-button {
+    width: 150px!important;
+}
+
+.buttons {
+    margin-top: 40px;
+}
+
+ion-fab-button {
+    --background: transparent;
+    --background-activated: transparent;
+    --color: #D4AF37;
+}
+
+.join {
+    color: black;
+}

@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title class="center">
+            <img src="../../assets/img/car-logo.png" id="img">
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="center">
+        <h2 class="header">Welcome</h2>
+        <h2 class="username" *ngIf="currentUser">{{currentUser.firstName}} <span> </span> {{currentUser.lastName}}</h2>
+        <ion-button fill="outline" [routerLink]="['/sign-in']" *ngIf="!currentUser">{{ 'SIGNINSIGNUP' | translate }}
+        </ion-button>
+    </div>
+
+    <ion-list>
+        <ion-item [routerLink]="['/tabs/settings']" *ngIf="currentUser">
+            <ion-icon name="settings-outline" slot="start"></ion-icon>
+            <ion-label>{{ 'SETTINGS' | translate }}</ion-label>
+        </ion-item>
+        <ion-item [routerLink]="['/']">
+            <ion-icon name="globe-outline" slot="start"></ion-icon>
+            <ion-label>{{ 'VISITOURWEBSITE' | translate }}</ion-label>
+        </ion-item>
+        <ion-item [routerLink]="['/']">
+            <ion-icon name="star-outline" slot="start"></ion-icon>
+            <ion-label>{{ 'RATEUSONAPPSTORE' | translate }}</ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-footer class="center">
+        <img src="../../assets/img/car-logo.png" alt="">
+        <p class="footer">Copyright @2020 Cairo Belgium Car. All Rights Reserved</p>
+    </ion-footer>
+</ion-content>

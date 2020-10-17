@@ -1,0 +1,84 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title class="center">
+            <img src="../../assets/img/car-logo.png" id="img">
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <!-- <div class="center car-s"></div> -->
+    <div class="animated-car">
+        <div class="hero">
+            <div class="highway"></div>
+            <div class="city"></div>
+            <div class="car">
+                <img src="../../assets/img/animated-car/car.png">
+            </div>
+            <div class="wheel">
+                <img src="../../assets/img/animated-car/wheel.png" class="back-wheel">
+                <img src="../../assets/img/animated-car/wheel.png" class="front-wheel">
+            </div>
+        </div>
+    </div>
+
+    <div class="search">
+
+        <ion-searchbar placeholder="{{ 'ENTERCARBRAND' | translate}}" [(ngModel)]="carBrand"></ion-searchbar>
+
+        <ion-row>
+            <ion-col size="6">
+                <ion-select [(ngModel)]="BODY" [interfaceOptions]="customAlertOptions"
+                    [ngModelOptions]="{standalone: true}" interface="popover" aria-required="required"
+                    (ionChange)="onSelectChangebody($event)" placeholder="{{ 'BODY' | translate}}">
+                    <ion-select-option *ngFor="let body of bodyArray" value="{{body}}">{{body}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+            <!-- <ion-col size="4">
+                <ion-datetime [(ngModel)]="MODEL" [pickerOptions]="customPickerOptions" value={selectedDate}
+                    [ngModelOptions]="{standalone: true}" interface="popover" aria-required="required"
+                    placeholder="{{ 'MODEL' | translate }}" displayFormat="YYYY" min="1920" id="modelinput">
+                </ion-datetime>
+            </ion-col> -->
+            <ion-col size="6">
+                <ion-select [(ngModel)]="CONDITION" [interfaceOptions]="customAlertOptions"
+                    [ngModelOptions]="{standalone: true}" interface="popover" aria-required="required"
+                    (ionChange)="onSelectChangeVehicleCondition($event)" placeholder="{{ 'CONDITION' | translate}}">
+                    <ion-select-option *ngFor="let VehicleCondition of VehicleConditionArray"
+                        value="{{VehicleCondition}}">{{VehicleCondition}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+
+        <ion-item class="searchKilometers">
+            <ion-label>
+                <p class="kilometers">{{ 'KILOMETERSLESSTHAN' | translate}} {{kilorangeVal}} KM</p>
+            </ion-label>
+        </ion-item>
+        <ion-item class="searchKilometers">
+            <ion-range [(ngModel)]="kilorangeVal" min="100000" max="500000" step="10000" snaps="true" ticks="false">
+            </ion-range>
+            <!-- <ion-icon name="search-outline" slot="end"></ion-icon> -->
+        </ion-item>
+
+        <ion-item class="searchyears">
+            <ion-label>
+                <p class="searchyears">{{ 'MODELSMORETHAN' | translate}} {{yearsrangeVal}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item class="searchyears">
+            <ion-range [(ngModel)]="yearsrangeVal" min="1920" max="2030" step="5" snaps="true" ticks="false">
+            </ion-range>
+            <!-- <ion-icon name="search-outline" slot="end"></ion-icon> -->
+        </ion-item>
+
+    </div>
+    <ion-button color="dark" expand="block"
+        [routerLink]="['/tabs/cars',carBrand,BODY ,yearsrangeVal,CONDITION,kilorangeVal]"
+        [disabled]="BODY==null||yearsrangeVal==null ||CONDITION==null||carBrand==null||kilorangeVal==null"
+        value="Search">
+        <!-- <ion-icon name="search-outline" slot="start"></ion-icon> -->
+        {{ 'SEARCH' | translate }}
+    </ion-button>
+</ion-content>

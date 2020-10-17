@@ -1,0 +1,20 @@
+ion-icon,
+ion-label {
+    padding-top: 10px;
+}
+
+ion-header img {
+    width: 40px;
+}
+
+ion-item:active {
+    ion-label {
+        color: #ff0015;
+    }
+    ion-icon {
+        color: #ff0015;
+    }
+    ion-select {
+        color: #ff0015;
+    }
+}

@@ -1,0 +1,12 @@
+ion-header img {
+    width: 40px;
+}
+
+ion-item:active {
+    ion-label {
+        color: #ff0015!important;
+    }
+    ion-icon {
+        color: #ff0015!important;
+    }
+}

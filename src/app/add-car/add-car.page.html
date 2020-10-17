@@ -1,0 +1,674 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title class="center">
+            <img src="../../assets/img/car-logo.png" id="img">
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <form [formGroup]="validations_form" (ngSubmit)="AddNewCarfun()">
+        <ion-list>
+            <!-- <input type="file" name="multi-files" multiple id="input-multi-files" class="form-control-file border" />
+            <hr />
+            <input type="submit" (click)="addcar()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="preview-images"></div>
+                </div>
+            </div> -->
+            <div class="center">
+                <img class="car-photo" src="../../assets/img/cars/car3.jpg">
+                <br>
+                <ion-button type="submit" value="addPhoto">
+                    <ion-icon name="add" slot="start"></ion-icon>
+                    {{ 'ADDPHOTO' | translate }}
+                </ion-button>
+            </div>
+
+            <ion-item>
+                <ion-label>
+                    {{ 'CARNAME' | translate }}
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" formControlName="carName" id="carNameinput"
+                    placeholder="{{ 'ENTERCARNAME' | translate }}" #carName required></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.carName">
+                    <div class="error-message"
+                        *ngIf="validations_form.get('carName').hasError(validation.type) && (validations_form.get('carName').dirty || validations_form.get('carName').touched)">
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <ion-item>
+                <ion-label>
+                    {{ 'KILOMETERS' | translate }}
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" min="0" formControlName="kilometers"
+                    placeholder="{{ 'ENTERCARKILOMETERS' | translate }}" id="kilometersinput" #kilometers required>
+                </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.kilometers">
+                    <div class="error-message"
+                        *ngIf="validations_form.get('kilometers').hasError(validation.type) && (validations_form.get('kilometers').dirty || validations_form.get('kilometers').touched)">
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <ion-item>
+                <ion-label>
+                    {{ 'PRICE' | translate }}
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" min="0" formControlName="price" placeholder="{{ 'ENTERCARPRICE' | translate }}"
+                    id="priceinput" #price required></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.price">
+                    <div class="error-message"
+                        *ngIf="validations_form.get('price').hasError(validation.type) && (validations_form.get('price').dirty || validations_form.get('price').touched)">
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- description attributes -->
+            <ion-item>
+                <ion-label>
+                    {{ 'DESCRIPTION' | translate }}
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-textarea id="descriptioninput" formControlName="description"
+                    placeholder="{{ 'ENTERCARDESCRIPTION' | translate }}" #description required></ion-textarea>
+            </ion-item>
+
+            <!-- state attributes -->
+
+            <ion-item class="center section" (click)="hide('state')">
+                <ion-label>
+                    {{ 'STATE' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-list *ngIf="hideState">
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'CONDITION' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="condition" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='condition'
+                        (ionChange)="onSelectChangeVehicleCondition($event)" aria-required="required">
+                        <ion-select-option *ngFor="let condition of VehicleConditionArray" value="{{condition}}">
+                            {{condition}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'PREVIOUSOWNERS' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="previousOwners" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='previousOwners'
+                        (ionChange)="onSelectChangePreviousOwners($event)" aria-required="required">
+                        <ion-select-option *ngFor="let previousOwners of PreviousOwnersArray"
+                            value="{{previousOwners}}">{{previousOwners}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'NEXTINSPECTION' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="NextInspection-NextInspectionInput">
+                    <ion-input type="text" formControlName="NextInspection" id="NextInspectioninput1" maxlength="15"
+                        placeholder="Enter Next Inspection Date" #NextInspection required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.NextInspection">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('NextInspection').hasError(validation.type) && (validations_form.get('NextInspection').dirty || validations_form.get('NextInspection').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'WARRANTY' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]=" warranty" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='warranty'
+                        (ionChange)="onSelectChangeWarranty($event)" aria-required="required">
+                        <ion-select-option *ngFor="let warranty of YesOrNoArray" value="{{warranty}}">{{warranty}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'FULLSERVICE' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="fullService" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='fullService'
+                        (ionChange)="onSelectChangefullService($event)" aria-required="required">
+                        <ion-select-option *ngFor="let fullservice of YesOrNoArray" value="{{fullservice}}">
+                            {{fullservice}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'NONSMOKINGVEHICLE' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="nonSmokingVehicle" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='nonSmokingVehicle'
+                        (ionChange)="onSelectChangenonSmokingVehicle($event)" aria-required="required">
+                        <ion-select-option *ngFor="let nonsmokingvehicle of YesOrNoArray" value="{{nonsmokingvehicle}}">
+                            {{nonsmokingvehicle}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+
+            <!-- performance attributes -->
+            <ion-item class="center section" (click)="hide('performance')">
+                <ion-label>
+                    {{ 'PERFORMANCE' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-list *ngIf="hidePerformance">
+                <ion-item>
+                    <ion-label>
+                        {{ 'GEARINGTYPE' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="gearingType" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='gearingType'
+                        (ionChange)="onSelectChangegearingType($event)" aria-required="required">
+                        <ion-select-option *ngFor="let gearingtype of gearingTypeArray" value="{{gearingtype}}">
+                            {{gearingtype}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'ENGINEVOLUME' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="engineVolume-engineVolumeInput">
+                    <ion-input type="number" formControlName="engineVolume" id="engineVolumeinput" maxlength="15"
+                        placeholder="Enter engine Volume" #engineVolume required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.engineVolume">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('engineVolume').hasError(validation.type) && (validations_form.get('engineVolume').dirty || validations_form.get('engineVolume').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'DRIVECHAIN' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="driveChain-driveChainInput">
+                    <ion-input type="number" formControlName="driveChain" id="driveChaininput" maxlength="15"
+                        placeholder="Enter Drive Chain" #driveChain required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.driveChain">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('driveChain').hasError(validation.type) && (validations_form.get('driveChain').dirty || validations_form.get('driveChain').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'CYLINDERS' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="cylinders" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='cylinders'
+                        (ionChange)="onSelectChangecylinders($event)" aria-required="required">
+                        <ion-select-option *ngFor="let cylinders of cylindersArray" value="{{cylinders}}">{{cylinders}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'HORSEPOWER' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="horsePower-horsePowerInput">
+                    <ion-input type="number" formControlName="horsePower" id="horsePowerinput" maxlength="15"
+                        placeholder="Enter Horse Power" #horsePower required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.horsePower">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('horsePower').hasError(validation.type) && (validations_form.get('horsePower').dirty || validations_form.get('horsePower').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'TORQUE' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="torque-torqueInput">
+                    <ion-input type="number" formControlName="torque" id="torqueinput" maxlength="15"
+                        placeholder="Enter Torque" #torque required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.torque">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('torque').hasError(validation.type) && (validations_form.get('torque').dirty || validations_form.get('torque').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+            </ion-list>
+
+            <!-- environment attributes -->
+            <ion-item class="center section" (click)="hide('environment')">
+                <ion-label>
+                    {{ 'ENVIRONMENT' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-list *ngIf="hideEnvironment">
+                <ion-item>
+                    <ion-label>
+                        {{ 'FUEL' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="fuel" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='fuel' (ionChange)="onSelectChangefuel($event)"
+                        aria-required="required">
+                        <ion-select-option *ngFor="let fuel of fuelArray" value="{{fuel}}">{{fuel}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'CONSUMPTION' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="consumption-consumptionInput">
+                    <ion-input type="text" formControlName="consumption" id="consumptioninput"
+                        placeholder="Enter Consumption" #consumption required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.consumption">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('consumption').hasError(validation.type) && (validations_form.get('consumption').dirty || validations_form.get('consumption').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'CO2EMISSION' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="CO2Emission-CO2EmissionInput">
+                    <ion-input type="text" formControlName="CO2Emission" id="CO2Emissioninput"
+                        placeholder="Enter CO2 Emission" #CO2Emission required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.CO2Emission">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('CO2Emission').hasError(validation.type) && (validations_form.get('CO2Emission').dirty || validations_form.get('CO2Emission').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'EMISSIONCLASS' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="emissionClass" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='emissionClass'
+                        (ionChange)="onSelectChangeemissionClass($event)" aria-required="required">
+                        <ion-select-option *ngFor="let emissionclass of emissionClassArray" value="{{emissionclass}}">
+                            {{emissionclass}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'EMISSIONLABEL' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="emissionLabel" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='emissionLabel'
+                        (ionChange)="onSelectChangeemissionLabel($event)" aria-required="required">
+                        <ion-select-option *ngFor="let emissionlabel of emissionLabelArray" value="{{emissionlabel}}">
+                            {{emissionlabel}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+            </ion-list>
+
+            <!-- properties attributes -->
+            <ion-item class="center section" (click)="hide('properties')">
+                <ion-label>
+                    {{ 'PROPERTIES' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-list *ngIf="hideProperties">
+                <ion-item>
+                    <ion-label>
+                        {{ 'BRAND' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="brand-brandInput">
+                    <ion-input type="text" formControlName="brand" id="brandinput" placeholder="Enter Car Brand" #brand
+                        required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.brand">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('brand').hasError(validation.type) && (validations_form.get('brand').dirty || validations_form.get('brand').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'MODEL' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="model-modelInput">
+                    <ion-input type="text" formControlName="model" id="modelinput" placeholder="Enter Car Model" #model
+                        required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.model">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('model').hasError(validation.type) && (validations_form.get('model').dirty || validations_form.get('model').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'FIRSTREGISTRATION' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="firstRegistration-firstRegistrationInput">
+                    <ion-input type="number" formControlName="firstRegistration" id="firstRegistrationinput1" maxlength="15"
+                        placeholder="Enter Car First Registration Date" #firstRegistration required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.firstRegistration">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('firstRegistration').hasError(validation.type) && (validations_form.get('firstRegistration').dirty || validations_form.get('firstRegistration').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'BODYCOLOR' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="bodyColor" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='bodyColor'
+                        (ionChange)="onSelectChangebodyColor($event)" aria-required="required">
+                        <ion-select-option *ngFor="let bodycolor of bodyColorArray" value="{{bodycolor}}">{{bodycolor}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'PAINTTYPE' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="paintType" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='paintType'
+                        (ionChange)="onSelectChangepaintType($event)" aria-required="required">
+                        <ion-select-option *ngFor="let painttype of paintTypeArray" value="{{painttype}}">{{painttype}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'BODYCOLORORIGINAL' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="bodyColorOriginal-bodyColorOriginalInput">
+                    <ion-input type="text" formControlName="bodyColorOriginal" id="bodyColorOriginalinput"
+                        placeholder="Enter Body Color Original" #bodyColorOriginal required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.bodyColorOriginal">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('bodyColorOriginal').hasError(validation.type) && (validations_form.get('bodyColorOriginal').dirty || validations_form.get('bodyColorOriginal').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'INTERIORFITTINGS' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="interiorFittings" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='interiorFittings'
+                        (ionChange)="onSelectChangeinteriorFittings($event)" aria-required="required">
+                        <ion-select-option *ngFor="let interiorfittings of interiorFittingsArray"
+                            value="{{interiorfittings}}">
+                            {{interiorfittings}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'INTERIORCOLORS' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="interiorColors" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='interiorColors'
+                        (ionChange)="onSelectChangeinteriorColors($event)" aria-required="required">
+                        <ion-select-option *ngFor="let interiorcolors of interiorColorsArray"
+                            value="{{interiorcolors}}">
+                            {{interiorcolors}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'BODY' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="body" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='body' (ionChange)="onSelectChangebody($event)"
+                        aria-required="required">
+                        <ion-select-option *ngFor="let body of bodyArray" value="{{body}}">{{body}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'NROFDOORS' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="NrofDoors" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='NrofDoors'
+                        (ionChange)="onSelectChangeNrofDoors($event)" aria-required="required">
+                        <ion-select-option *ngFor="let Nrofdoors of NrofDoorsArray" value="{{Nrofdoors}}">{{Nrofdoors}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'NROFSEATS' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="NrofSeats" [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" interface="popover"
+                        placeholder="{{ 'SELECTONE' | translate }}" id='NrofSeats'
+                        (ionChange)="onSelectChangeNrofSeats($event)" aria-required="required">
+                        <ion-select-option *ngFor="let Nrofseats of NrofSeatsArray" value="{{Nrofseats}}">{{Nrofseats}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'MODELCODE' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="modelCode-modelCodelInput">
+                    <ion-input type="text" formControlName="modelCode" id="modelCodeinput"
+                        placeholder="Enter Model Code" #modelCode required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.modelCode">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('modelCode').hasError(validation.type) && (validations_form.get('modelCode').dirty || validations_form.get('modelCode').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'COUNTRYVERSION' | translate }}
+                    </ion-label>
+                </ion-item>
+                <ion-item id="countryVersion-countryVersionInput">
+                    <ion-input type="text" formControlName="countryVersion" id="countryVersioninput"
+                        placeholder="Enter Country Version" #countryVersion required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.countryVersion">
+                        <div class="error-message"
+                            *ngIf="validations_form.get('countryVersion').hasError(validation.type) && (validations_form.get('countryVersion').dirty || validations_form.get('countryVersion').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+            </ion-list>
+
+            <!-- equipment attributes -->
+            <ion-item class="center section" (click)="hide('equipment')">
+                <ion-label>
+                    {{ 'EQUIPMENT' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-list *ngIf="hideEquipment">
+                <ion-item>
+                    <ion-label>
+                        {{ 'COMFORTANDCONVENIENCE' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="comfortAndConvenience" multiple={true}
+                        [ngModelOptions]="{standalone: true}" slot="end" [interfaceOptions]="customPopoverOptions"
+                         placeholder="{{ 'SELECTONE' | translate }}" id='comfortAndConvenience'
+                        (ionChange)="onSelectChangecomfortAndConvenience($event)" aria-required="required">
+                        <ion-select-option *ngFor="let comfortAndconvenience of comfortAndConvenienceArray"
+                            value="{{comfortAndconvenience}}">{{comfortAndconvenience}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'ENTERTAINMENTANDMEDIA' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="entertainmentAndMedia" multiple={true}
+                        [ngModelOptions]="{standalone: true}" slot="end" [interfaceOptions]="customPopoverOptions"
+                         placeholder="{{ 'SELECTONE' | translate }}" id='entertainmentAndMedia'
+                        (ionChange)="onSelectChangeentertainmentAndMedia($event)" aria-required="required">
+                        <ion-select-option *ngFor="let entertainmentAndmedia of entertainmentAndMediaArray"
+                            value="{{entertainmentAndmedia}}">{{entertainmentAndmedia}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'EXTRAS' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="extras" multiple={true} [ngModelOptions]="{standalone: true}" slot="end"
+                        [interfaceOptions]="customPopoverOptions" 
+                        placeholder="{{ 'SELECTONE' | translate }}" id='extras'
+                        (ionChange)="onSelectChangeextras($event)" aria-required="required">
+                        <ion-select-option *ngFor="let extras of extrasArray" value="{{extras}}">{{extras}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        {{ 'SAFETYANDSECURITY' | translate }}
+                    </ion-label>
+                    <ion-select [(ngModel)]="safetyAndSecurity" multiple={true} [ngModelOptions]="{standalone: true}"
+                        slot="end" [interfaceOptions]="customPopoverOptions" 
+                        placeholder="{{ 'SELECTONE' | translate }}" id='safetyAndSecurity'
+                        (ionChange)="onSelectChangesafetyAndSecurity($event)" aria-required="required">
+                        <ion-select-option *ngFor="let safetyAndsecurity of safetyAndSecurityArray"
+                            value="{{safetyAndsecurity}}">
+                            {{safetyAndsecurity}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+            </ion-list>
+
+            <ion-button type="submit" expand="block"  value="AddCar">
+                <ion-icon name="add" slot="start"></ion-icon>
+                {{ 'ADDCAR' | translate }}
+            </ion-button>
+        </ion-list>
+
+    </form>
+</ion-content>

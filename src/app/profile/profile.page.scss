@@ -1,0 +1,44 @@
+div {
+    height: 150px;
+    padding-top: 25px;
+    background-color: #222;
+}
+
+ion-footer {
+    position: fixed;
+    bottom: 0;
+}
+
+ion-footer img {
+    width: 50px;
+}
+
+ion-icon,
+ion-label {
+    padding-top: 10px;
+}
+
+ion-header img {
+    width: 40px;
+}
+
+.header,
+.footer {
+    color: #D4AF37;
+}
+.username {
+    color: #fff;
+}
+
+ion-item:active {
+    ion-label {
+        color: #ff0015;
+    }
+    ion-icon {
+        color: #ff0015;
+    }
+}
+
+ion-button {
+    color: #D4AF37;
+}

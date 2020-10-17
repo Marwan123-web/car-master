@@ -1,0 +1,28 @@
+ion-header img {
+    width: 40px;
+}
+
+.section {
+    --background: rgb(114, 110, 110);
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.section:active {
+    color: #ff0015;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+    ion-icon {
+        color: #ff0015;
+    }
+}
+
+ion-button {
+    color: black;
+}
+
+.car-photo {
+    height: 130px;
+    width: 280px;
+}

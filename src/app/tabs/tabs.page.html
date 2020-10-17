@@ -1,0 +1,30 @@
+<ion-tabs>
+
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+            <ion-icon name="home-outline"></ion-icon>
+            <ion-label>{{ 'HOME' | translate }}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="search">
+            <ion-icon name="search-outline"></ion-icon>
+            <ion-label>{{ 'SEARCH' | translate }}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profile">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <ion-label>{{ 'PROFILE' | translate }}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="add-car" *ngIf="isAdmin">
+            <ion-icon name="add-outline"></ion-icon>
+            <ion-label>{{ 'ADDCAR' | translate }}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="more">
+            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+            <ion-label>{{ 'MORE' | translate }}</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+
+</ion-tabs>

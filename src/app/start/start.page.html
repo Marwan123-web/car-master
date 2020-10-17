@@ -1,0 +1,41 @@
+<ion-content>
+    <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <img src="../../assets/img/car-logo.png" id="img">
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <h1>Find Your Dream</h1>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <p>Browse through Cairo Belgium Car's inventory for our current brand new and pre-owned cars.
+                        </p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-slide>
+        <ion-slide>
+            <h1>Slide 2</h1>
+        </ion-slide>
+        <ion-slide>
+            <h1>Slide 3</h1>
+        </ion-slide>
+    </ion-slides>
+    <!-- fab placed to the bottom end -->
+    <ion-fab horizontal="end">
+        <ion-fab-button [routerLink]="['/tabs']">{{ 'SKIP' | translate }}
+            <ion-icon name="arrow-forward-circle"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <div class="center buttons">
+        <ion-button class="join" [routerLink]="['/sign-up']">{{ 'JOINNOW' | translate }}</ion-button>
+        <br>
+        <ion-button fill="outline" [routerLink]="['/sign-in']">{{ 'SIGNIN' | translate }}</ion-button>
+    </div>
+</ion-content>

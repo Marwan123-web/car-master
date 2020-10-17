@@ -1,0 +1,362 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start" *ngIf="cardata">
+            {{cardata.Title}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div *ngIf="cardata">
+        <ion-list>
+            <!-- <ion-item>
+                <ion-img src="../../assets/img/cars/car2.jpg"></ion-img>
+            </ion-item> -->
+            <ion-slides pager="true" [options]="slideOpts">
+                <ion-slide *ngFor="let images of cardata.Images">
+                    <ion-grid>
+                        <ion-img src="../../assets/img/{{images}}" class="car-img"></ion-img>
+                    </ion-grid>
+                </ion-slide>
+
+            </ion-slides>
+
+            <ion-item>
+                <ion-label>
+                    <p>{{ 'RESERVED' | translate}}</p>
+                    <h3>{{cardata.Reserved}}</h3>
+                    <ion-button id="courses-semesters-info-statusBtn" *ngIf="isAdmin" value="View" class="ionBtn"
+                        style="width: 150px;" (click)="changeCarStatusfun(cardata.Reserved)">
+                        <!-- <ion-icon name="checkmark-circle-outline" slot="start" position="fixed"></ion-icon> -->
+                        {{ 'CHANGECARSTATUS' | translate}}
+                    </ion-button>
+                </ion-label>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>
+                    <p>{{ 'KILOMETERS' | translate}}</p>
+                    <h3>{{cardata.Kilometers}} KM</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p>{{ 'PRICE' | translate}}</p>
+                    <h3>{{cardata.Price}} €</h3>
+                </ion-label>
+            </ion-item>
+
+            <!-- description attributes -->
+            <ion-item>
+                <ion-label class="ion-text-wrap">
+                    <p>{{ 'DESCRIPTION' | translate}}</p>
+                    <h3>{{cardata.Description}}</h3>
+                </ion-label>
+            </ion-item>
+
+            <!-- state attributes -->
+            <ion-item class="center section" (click)="hide('state')">
+                <ion-label>
+                    {{ 'STATE' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-item-group *ngIf="hideState">
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'CONDITION' | translate}}</p>
+                        <h3>{{cardata.Condition}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'PREVIOUSOWNERS' | translate}}</p>
+                        <h3>{{cardata.PreviousOwners}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'NEXTINSPECTION' | translate}}</p>
+                        <h3>{{cardata.NextInspection}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'WARRANTY' | translate}}</p>
+                        <h3>{{cardata.Warranty}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'FULLSERVICE' | translate}}</p>
+                        <h3>{{cardata.FullService}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'NONSMOKINGVEHICLE' | translate}}</p>
+                        <h3>{{cardata.NonSmokingVehicle}}</h3>
+                    </ion-label>
+                </ion-item>
+
+            </ion-item-group>
+
+            <!-- performance attributes -->
+            <ion-item class="center section" (click)="hide('performance')">
+                <ion-label>
+                    {{ 'PERFORMANCE' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-item-group *ngIf="hidePerformance">
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'GEARINGTYPE' | translate}}</p>
+                        <h3>{{cardata.GearingType}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'ENGINEVOLUME' | translate}}</p>
+                        <h3>{{cardata.EngineVolume}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'DRIVECHAIN' | translate}}</p>
+                        <h3>{{cardata.DriveChain}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'CYLINDERS' | translate}}</p>
+                        <h3>{{cardata.Cylinders}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'HORSEPOWER' | translate}}</p>
+                        <h3>{{cardata.HorsePower}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'TORQUE' | translate}}</p>
+                        <h3>{{cardata.Torque}}</h3>
+                    </ion-label>
+                </ion-item>
+
+            </ion-item-group>
+
+            <!-- environment attributes -->
+            <ion-item class="center section" (click)="hide('environment')">
+                <ion-label>
+                    {{ 'ENVIRONMENT' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-item-group *ngIf="hideEnvironment">
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'FUEL' | translate}}</p>
+                        <h3>{{cardata.Fuel}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label class="ion-text-wrap">
+                        <p>{{ 'CONSUMPTION' | translate}}</p>
+                        <h3>{{cardata.Consumption}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label class="ion-text-wrap">
+                        <p>{{ 'CO2EMISSION' | translate}}</p>
+                        <h3>{{cardata.CO2Emission}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'EMISSIONCLASS' | translate}}</p>
+                        <h3>{{cardata.EmissionClass}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'EMISSIONLABEL' | translate}}</p>
+                        <h3>{{cardata.EmissionLabel}}</h3>
+                    </ion-label>
+                </ion-item>
+
+            </ion-item-group>
+
+            <!-- properties attributes -->
+            <ion-item class="center section" (click)="hide('properties')">
+                <ion-label>
+                    {{ 'PROPERTIES' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-item-group *ngIf="hideProperties">
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'BRAND' | translate}}</p>
+                        <h3>{{cardata.Brand}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'MODEL' | translate}}</p>
+                        <h3>{{cardata.Model}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'FIRSTREGISTRATION' | translate}}</p>
+                        <h3>{{cardata.FirstRegistration}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <!-- <ion-item>
+                    <ion-label>
+                        <p>{{ 'EMISSIONCLASS' | translate}}</p>
+                        <h3>{{cardata.PreviousOwners}}</h3>
+                    </ion-label>
+                </ion-item> -->
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'BODYCOLOR' | translate}}</p>
+                        <h3>{{cardata.BodyColor}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'PAINTTYPE' | translate}}</p>
+                        <h3>{{cardata.PaintType}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'BODYCOLORORIGINAL' | translate}}</p>
+                        <h3>{{cardata.BodyColorOriginal}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'INTERIORFITTINGS' | translate}}</p>
+                        <h3>{{cardata.InteriorFittings}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'INTERIORCOLORS' | translate}}</p>
+                        <h3>{{cardata.InteriorColors}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'BODY' | translate}}</p>
+                        <h3>{{cardata.Body}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'NROFDOORS' | translate}}</p>
+                        <h3>{{cardata.NrofDoors}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'NROFSEATS' | translate}}</p>
+                        <h3>{{cardata.NrofSeats}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'MODELCODE' | translate}}</p>
+                        <h3>{{cardata.ModelCode}}</h3>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'COUNTRYVERSION' | translate}}</p>
+                        <h3>{{cardata.CountryVersion}}</h3>
+                    </ion-label>
+                </ion-item>
+
+            </ion-item-group>
+
+            <!-- equipment attributes -->
+            <ion-item class="center section" (click)="hide('equipment')">
+                <ion-label>
+                    {{ 'EQUIPMENT' | translate }}
+                </ion-label>
+                <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-item-group *ngIf="hideEquipment">
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'COMFORTANDCONVENIENCE' | translate}}</p>
+                        <h5 class="ion-text-wrap" *ngFor="let cac of cardata.ComfortAndConvenience">{{cac}}</h5>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'ENTERTAINMENTANDMEDIA' | translate}}</p>
+                        <h5 class="ion-text-wrap" *ngFor="let eam of cardata.EntertainmentAndMedia">{{eam}}</h5>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'EXTRAS' | translate}}</p>
+                        <h5 class="ion-text-wrap" *ngFor="let ex of cardata.Extras">{{ex}}</h5>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <p>{{ 'SAFETYANDSECURITY' | translate}}</p>
+                        <h5 class="ion-text-wrap" *ngFor="let sas of cardata.SafetyAndSecurity">{{sas}}</h5>
+                    </ion-label>
+                </ion-item>
+
+            </ion-item-group>
+
+        </ion-list>
+    </div>
+
+</ion-content>
