@@ -14,9 +14,9 @@ import { AppServicesService } from '../services/app-services.service';
   styleUrls: ['sign-up.page.scss']
 })
 export class signUpPage {
-  name: string;
-  email: string;
-  password: string;
+  name: any;
+  email: any;
+  password: any;
   role: any;
   dataOfJoin: any;
   returnUrl: any = '/tabs/home';
@@ -26,8 +26,8 @@ export class signUpPage {
   showPassword = false;
   passwordToggleIcon = "eye";
   firstname: any;
-  lastname: string;
-  phonenumber: string;
+  lastname: any;
+  phonenumber: any;
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private formBuilder: FormBuilder, private route: ActivatedRoute, private alertservice: AlertService,) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
 

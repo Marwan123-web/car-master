@@ -21,6 +21,17 @@ export class addCarPage implements OnInit {
   description: any;
   customPickerOptions: any;
 
+  selectedLanguage: string;
+  validations_form: FormGroup;
+  hideState = false;
+  hidePerformance = false;
+  hideEnvironment = false;
+  hideProperties = false;
+  hideEquipment = false;
+  constructor(private formBuilder: FormBuilder, private alertservice: AlertService, private translateConfigService: TranslateConfigService, private authenticationService: AuthService, private appservices: AppServicesService,) {
+    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+    this.currentUser = this.authenticationService.currentUserValue;
+  }
   // ----------------------  state attributes ---------------
   YesOrNoArray: any = ["Yes", "No"]
   //
@@ -312,6 +323,8 @@ export class addCarPage implements OnInit {
     this.safetyAndSecurity = event.target.value;
     // console.log(this.safetyAndSecurity)
   }
+
+
   AddNewCarfun() {
     let Title = document.getElementById("carNameinput") as HTMLInputElement;
     let Kilometers = document.getElementById("kilometersinput") as HTMLInputElement;
@@ -334,7 +347,7 @@ export class addCarPage implements OnInit {
     this.Title = Title.value;
 
     this.Kilometers = Kilometers.value;
- 
+
     this.Price = Price.value;
 
     this.Description = Description.value;
@@ -370,7 +383,7 @@ export class addCarPage implements OnInit {
     var now = new Date();
     this.DateOfPost = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
-    this.images = "";
+    this.images = ["a.jbg","b.jbg"];
 
     this.appservices.AddNewCar(this.Title, this.images, this.Kilometers, Price, this.Vehicle_Condition, this.PreviousOwners, this.NextInspection, this.Warranty, this.fullService, this.nonSmokingVehicle, this.gearingType, this.EngineVolume, this.DriveChain, this.cylinders, this.HorsePower, this.Torque
       , this.fuel, this.Consumption, this.CO2Emission, this.emissionClass, this.emissionLabel
@@ -380,7 +393,7 @@ export class addCarPage implements OnInit {
         this.alertservice.showAlert("&#xE876;", "success", res.msg);
         // this.navigateToSettings();
       }, err => {
-        this.alertservice.showAlert("&#xE5CD;", "error", err.error.msg);
+        this.alertservice.showAlert("&#xE5CD;", "error", err.error);
       });
 
 
@@ -389,19 +402,6 @@ export class addCarPage implements OnInit {
 
 
   }
-
-  selectedLanguage: string;
-  validations_form: FormGroup;
-  hideState = false;
-  hidePerformance = false;
-  hideEnvironment = false;
-  hideProperties = false;
-  hideEquipment = false;
-  constructor(private formBuilder: FormBuilder, private alertservice: AlertService, private translateConfigService: TranslateConfigService, private authenticationService: AuthService, private appservices: AppServicesService,) {
-    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
-    this.currentUser = this.authenticationService.currentUserValue;
-  }
-
   hide(divID) {
     if (divID == "state") {
       //Hide State

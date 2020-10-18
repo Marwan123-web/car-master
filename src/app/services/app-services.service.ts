@@ -11,7 +11,15 @@ export class AppServicesService {
   updateuserIdbody: any;
   updateuserbody: any;
   userId: any;
-  addNewCarBody: any;
+  addNewCarBody: {
+    Title: any; Images: any; Kilometers: any; Price: any; Condition: any; PreviousOwners: any;
+    NextInspection: any; Warranty: any; FullService: any; NonSmokingVehicle: any; GearingType: any; EngineVolume: any;
+    DriveChain: any; Cylinders: any; HorsePower: any; Torque
+    : any; Fuel: any; Consumption: any; CO2Emission: any; EmissionClass: any; EmissionLabel
+    : any; Brand: any; Model: any; FirstRegistration: any; BodyColor: any; PaintType: any; BodyColorOriginal: any; InteriorFittings: any; InteriorColors: any;
+    Body: any; NrofDoors: any; NrofSeats: any; ModelCode: any; CountryVersion: any;
+    ComfortAndConvenience: any; EntertainmentAndMedia: any; Extras: any; SafetyAndSecurity: any; Description: any; DateOfPost
+  };
   registerBody: { firstName: any; lastName: any; email: any; password: any; phoneNumber: any; dataOfJoin: any; };
   carId: any;
   updatecarIdbody: any;
@@ -54,20 +62,62 @@ export class AppServicesService {
   }
 
 
-  public AddNewCar(Title, Images, Kilometers, Price, Condition, PreviousOwners, NextInspection, Warranty, FullService, NonSmokingVehicle, GearingType, EngineVolume, DriveChain, Cylinders, HorsePower, Torque
-    , Fuel, Consumption, CO2Emission, EmissionClass, EmissionLabel
-    , Brand, Model, FirstRegistration, BodyColor, PaintType, BodyColorOriginal, InteriorFittings, InteriorColors,
-    Body, NrofDoors, NrofSeats, ModelCode, CountryVersion,
-    ComfortAndConvenience, EntertainmentAndMedia, Extras, SafetyAndSecurity, Description, DateOfPost): Observable<any> {
+  public AddNewCar(Title, Images, Kilometers, Price, Condition, PreviousOwners, NextInspection, Warranty, FullService, NonSmokingVehicle, GearingType, EngineVolume, DriveChain, Cylinders, HorsePower, Torque, Fuel, Consumption, CO2Emission, EmissionClass, EmissionLabel, Brand, Model, FirstRegistration, BodyColor, PaintType, BodyColorOriginal, InteriorFittings, InteriorColors, Body, NrofDoors, NrofSeats, ModelCode, CountryVersion, ComfortAndConvenience, EntertainmentAndMedia, Extras, SafetyAndSecurity, Description, DateOfPost): Observable<any> {
     this.addNewCarBody = {
-      Title, Images, Kilometers, Price, Condition, PreviousOwners, NextInspection, Warranty, FullService, NonSmokingVehicle, GearingType, EngineVolume, DriveChain, Cylinders, HorsePower, Torque
-      , Fuel, Consumption, CO2Emission, EmissionClass, EmissionLabel
-      , Brand, Model, FirstRegistration, BodyColor, PaintType, BodyColorOriginal, InteriorFittings, InteriorColors,
-      Body, NrofDoors, NrofSeats, ModelCode, CountryVersion,
-      ComfortAndConvenience, EntertainmentAndMedia, Extras, SafetyAndSecurity, Description, DateOfPost
+      Title, Images, Kilometers, Price, Condition, PreviousOwners,
+      NextInspection, Warranty, FullService, NonSmokingVehicle, GearingType, EngineVolume,
+      DriveChain, Cylinders, HorsePower, Torque, Fuel, Consumption,
+      CO2Emission, EmissionClass, EmissionLabel, Brand, Model, FirstRegistration,
+      BodyColor, PaintType, BodyColorOriginal, InteriorFittings, InteriorColors, Body,
+      NrofDoors, NrofSeats, ModelCode, CountryVersion, ComfortAndConvenience, EntertainmentAndMedia,
+      Extras, SafetyAndSecurity, Description, DateOfPost
     }
+    const params = new HttpParams()
+      .set('Title', Title)
+      .set('Images', Images)
+      .set('Kilometers', Kilometers)
+      .set('Price', Price)
+      .set('Condition', Kilometers)
+      .set('PreviousOwners', Kilometers)
+      .set('NextInspection', NextInspection)
+      .set('Warranty', Warranty)
+      .set('FullService', FullService)
+      .set('NonSmokingVehicle', NonSmokingVehicle)
+      .set('GearingType', GearingType)
+      .set('EngineVolume', EngineVolume)
+      .set('DriveChain', DriveChain)
+      .set('Cylinders', Cylinders)
+      .set('HorsePower', HorsePower)
+      .set('Torque', Torque)
+      .set('Fuel', Fuel)
+      .set('Consumption', Consumption)
+      .set('CO2Emission', CO2Emission)
+      .set('EmissionClass', EmissionClass)
+      .set('EmissionLabel', EmissionLabel)
+      .set('Brand', Brand)
+      .set('Model', Model)
+      .set('FirstRegistration', FirstRegistration)
+      .set('BodyColor', BodyColor)
+      .set('PaintType', PaintType)
+      .set('BodyColorOriginal', BodyColorOriginal)
+      .set('InteriorFittings', InteriorFittings)
+      .set('InteriorColors', InteriorColors)
+      .set('Body', Body)
+      .set('NrofDoors', NrofDoors)
+      .set('NrofSeats', NrofSeats)
+      .set('ModelCode', ModelCode)
+      .set('CountryVersion', CountryVersion)
+      .set('ComfortAndConvenience', ComfortAndConvenience)
+      .set('EntertainmentAndMedia', EntertainmentAndMedia)
+      .set('Extras', Extras)
+      .set('SafetyAndSecurity', SafetyAndSecurity)
+      .set('Description', Description)
+      .set('DateOfPost', DateOfPost);
+
+    // this.addNewCarBody = { NextInspection, EngineVolume, DriveChain, Consumption, CO2Emission, FirstRegistration }
     let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
-    return this.httpClient.post(`${this.url}/addcar`, this.addNewCarBody, { headers: headers });
+    console.log({ params })
+    return this.httpClient.post(`${this.url}/testaaa`, { params });
   }
 
   public Register(firstName, lastName, email, password, phoneNumber, dataOfJoin): Observable<any> {

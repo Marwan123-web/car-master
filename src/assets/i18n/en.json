@@ -129,16 +129,17 @@
     "VISITOURWEBSITE": "Visit Your Website",
     "WARRANTY": "Warranty",
     "YEAR": "Year",
+
+
+
+    
     "YOURPASSWORD": "Your Password",
-
-
-
-
-
-
     "ENTERCARBRAND": "Enter Car Brand",
     "KILOMETERSLESSTHAN": "Kilometers Less Than",
     "MODELSMORETHAN": "Model More Than",
     "RESERVED": "Reserved",
-    "CHANGECARSTATUS": "Change Car Status"
+    "CHANGECARSTATUS": "Change Car Status",
+    "FIRSTNAME": "First Name",
+    "LASTNAME": "Last Name",
+    "PHONENUMBER": "Phone Number"
 }
