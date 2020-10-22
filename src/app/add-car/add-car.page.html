@@ -14,23 +14,13 @@
     </ion-refresher> -->
     <form [formGroup]="validations_form" (ngSubmit)="AddNewCarfun()">
         <ion-list>
-            <!-- <input type="file" name="multi-files" multiple id="input-multi-files" class="form-control-file border" />
-            <hr />
-            <input type="submit" (click)="addcar()">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="preview-images"></div>
-                </div>
-            </div> -->
             <div class="center">
-                <img class="car-photo" src="../../assets/img/cars/car3.jpg">
-                <br>
-                <ion-button type="submit" value="addPhoto">
-                    <ion-icon name="add" slot="start"></ion-icon>
-                    {{ 'ADDPHOTO' | translate }}
-                </ion-button>
+                Select images: <input type="file" name="multi-files" multiple id="input-multi-files"
+                    class="form-control-file border" (change)="detectFiles($event)" />
             </div>
-
+            <div>
+                <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="75" height="75">
+            </div>
             <ion-item>
                 <ion-label>
                     {{ 'CARNAME' | translate }}
@@ -438,8 +428,9 @@
                     </ion-label>
                 </ion-item>
                 <ion-item id="firstRegistration-firstRegistrationInput">
-                    <ion-input type="number" formControlName="firstRegistration" id="firstRegistrationinput1" maxlength="15"
-                        placeholder="Enter Car First Registration Date" #firstRegistration required></ion-input>
+                    <ion-input type="number" formControlName="firstRegistration" id="firstRegistrationinput1"
+                        maxlength="15" placeholder="Enter Car First Registration Date" #firstRegistration required>
+                    </ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.firstRegistration">
@@ -615,7 +606,7 @@
                     </ion-label>
                     <ion-select [(ngModel)]="comfortAndConvenience" multiple={true}
                         [ngModelOptions]="{standalone: true}" slot="end" [interfaceOptions]="customPopoverOptions"
-                         placeholder="{{ 'SELECTONE' | translate }}" id='comfortAndConvenience'
+                        placeholder="{{ 'SELECTONE' | translate }}" id='comfortAndConvenience'
                         (ionChange)="onSelectChangecomfortAndConvenience($event)" aria-required="required">
                         <ion-select-option *ngFor="let comfortAndconvenience of comfortAndConvenienceArray"
                             value="{{comfortAndconvenience}}">{{comfortAndconvenience}}</ion-select-option>
@@ -628,7 +619,7 @@
                     </ion-label>
                     <ion-select [(ngModel)]="entertainmentAndMedia" multiple={true}
                         [ngModelOptions]="{standalone: true}" slot="end" [interfaceOptions]="customPopoverOptions"
-                         placeholder="{{ 'SELECTONE' | translate }}" id='entertainmentAndMedia'
+                        placeholder="{{ 'SELECTONE' | translate }}" id='entertainmentAndMedia'
                         (ionChange)="onSelectChangeentertainmentAndMedia($event)" aria-required="required">
                         <ion-select-option *ngFor="let entertainmentAndmedia of entertainmentAndMediaArray"
                             value="{{entertainmentAndmedia}}">{{entertainmentAndmedia}}</ion-select-option>
@@ -640,9 +631,8 @@
                         {{ 'EXTRAS' | translate }}
                     </ion-label>
                     <ion-select [(ngModel)]="extras" multiple={true} [ngModelOptions]="{standalone: true}" slot="end"
-                        [interfaceOptions]="customPopoverOptions" 
-                        placeholder="{{ 'SELECTONE' | translate }}" id='extras'
-                        (ionChange)="onSelectChangeextras($event)" aria-required="required">
+                        [interfaceOptions]="customPopoverOptions" placeholder="{{ 'SELECTONE' | translate }}"
+                        id='extras' (ionChange)="onSelectChangeextras($event)" aria-required="required">
                         <ion-select-option *ngFor="let extras of extrasArray" value="{{extras}}">{{extras}}
                         </ion-select-option>
                     </ion-select>
@@ -653,9 +643,9 @@
                         {{ 'SAFETYANDSECURITY' | translate }}
                     </ion-label>
                     <ion-select [(ngModel)]="safetyAndSecurity" multiple={true} [ngModelOptions]="{standalone: true}"
-                        slot="end" [interfaceOptions]="customPopoverOptions" 
-                        placeholder="{{ 'SELECTONE' | translate }}" id='safetyAndSecurity'
-                        (ionChange)="onSelectChangesafetyAndSecurity($event)" aria-required="required">
+                        slot="end" [interfaceOptions]="customPopoverOptions" placeholder="{{ 'SELECTONE' | translate }}"
+                        id='safetyAndSecurity' (ionChange)="onSelectChangesafetyAndSecurity($event)"
+                        aria-required="required">
                         <ion-select-option *ngFor="let safetyAndsecurity of safetyAndSecurityArray"
                             value="{{safetyAndsecurity}}">
                             {{safetyAndsecurity}}</ion-select-option>
@@ -664,7 +654,7 @@
 
             </ion-list>
 
-            <ion-button type="submit" expand="block"  value="AddCar">
+            <ion-button type="submit" expand="block" value="AddCar">
                 <ion-icon name="add" slot="start"></ion-icon>
                 {{ 'ADDCAR' | translate }}
             </ion-button>

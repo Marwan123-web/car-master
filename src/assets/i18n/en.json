@@ -131,7 +131,6 @@
     "YEAR": "Year",
 
 
-
     
     "YOURPASSWORD": "Your Password",
     "ENTERCARBRAND": "Enter Car Brand",
@@ -141,5 +140,6 @@
     "CHANGECARSTATUS": "Change Car Status",
     "FIRSTNAME": "First Name",
     "LASTNAME": "Last Name",
-    "PHONENUMBER": "Phone Number"
+    "PHONENUMBER": "Phone Number",
+    "FAVOURITES": "Favourites"
 }

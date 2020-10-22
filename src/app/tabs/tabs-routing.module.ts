@@ -35,6 +35,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
+        path: 'favourites',
+        loadChildren: () => import('../favourites/favourites.module').then(m => m.FavouritesPageModule),
+        canActivate: [AuthGuard],
+      },
+      {
         path: 'car/:carid',
         loadChildren: () => import('../car/car.module').then(m => m.carPageModule)
       },

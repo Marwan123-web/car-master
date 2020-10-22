@@ -30,6 +30,7 @@ export class carPage implements OnInit {
   currentUser: User;
   changeto: string;
   changed: any;
+  deleted: any;
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
 
 
@@ -124,7 +125,25 @@ export class carPage implements OnInit {
       });
     });
   }
-
+  navigateToHome() {
+    this.router.navigate(['/tabs/home']);
+  }
+  deleteCarFunction(id) {
+    this.appservices.deleteCar(id).subscribe(res => {
+      this.navigateToHome();
+      this.deleted = res
+    }, err => {
+      this.deleted = err;
+    });
+  }
+  
+  addToFavouritesFunction(CarId) {
+    this.appservices.addToFavourites(this.currentUser._id, CarId).subscribe(res => {
+      this.alertservice.showAlert("&#xE876;", "success", res.msg);
+    }, err => {
+      this.alertservice.showAlert("&#xE5CD;", "error", err.error.msg);
+    });
+  }
 
   ngOnInit(): void {
     this.getcar();

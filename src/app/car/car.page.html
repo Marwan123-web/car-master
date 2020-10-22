@@ -6,6 +6,9 @@
         <ion-title slot="start" *ngIf="cardata">
             {{cardata.Title}}
         </ion-title>
+        <ion-buttons slot="end" (click)="addToFavouritesFunction(cardata._id)">
+            <ion-icon name="add" slot="start"></ion-icon>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -357,6 +360,11 @@
             </ion-item-group>
 
         </ion-list>
+        <ion-button color="danger" expand="block" value="DeleteCar" *ngIf="isAdmin"
+            (click)="deleteCarFunction(cardata._id)">
+            <ion-icon name="trash" slot="start"></ion-icon>
+            {{ 'DELETECAR' | translate }}
+        </ion-button>
     </div>
 
 </ion-content>

@@ -5,7 +5,9 @@ import { TranslateConfigService } from '../services/translate-config.service';
 import { AuthService } from '../services/auth.service';
 import { AlertService } from '../services/alert.service';
 import { User } from '../_models';
-
+class ImageSnippet {
+  constructor(public src: string, public file: File) { }
+}
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -38,6 +40,7 @@ export class homePage implements OnInit {
       console.log('no user yet')
     }
   }
+
   getRecentCars() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.appservices.getRecentCars().subscribe(res => {

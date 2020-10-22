@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpEvent } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { User, Car } from '../_models';
 @Injectable({
@@ -11,8 +11,9 @@ export class AppServicesService {
   updateuserIdbody: any;
   updateuserbody: any;
   userId: any;
+  // addNewCarBody: any;
   addNewCarBody: {
-    Title: any; Images: any; Kilometers: any; Price: any; Condition: any; PreviousOwners: any;
+    Title: any; Kilometers: any; Price: any; Condition: any; PreviousOwners: any;
     NextInspection: any; Warranty: any; FullService: any; NonSmokingVehicle: any; GearingType: any; EngineVolume: any;
     DriveChain: any; Cylinders: any; HorsePower: any; Torque
     : any; Fuel: any; Consumption: any; CO2Emission: any; EmissionClass: any; EmissionLabel
@@ -62,9 +63,9 @@ export class AppServicesService {
   }
 
 
-  public AddNewCar(Title, Images, Kilometers, Price, Condition, PreviousOwners, NextInspection, Warranty, FullService, NonSmokingVehicle, GearingType, EngineVolume, DriveChain, Cylinders, HorsePower, Torque, Fuel, Consumption, CO2Emission, EmissionClass, EmissionLabel, Brand, Model, FirstRegistration, BodyColor, PaintType, BodyColorOriginal, InteriorFittings, InteriorColors, Body, NrofDoors, NrofSeats, ModelCode, CountryVersion, ComfortAndConvenience, EntertainmentAndMedia, Extras, SafetyAndSecurity, Description, DateOfPost): Observable<any> {
+  public AddNewCar(Title, Kilometers, Price, Condition, PreviousOwners, NextInspection, Warranty, FullService, NonSmokingVehicle, GearingType, EngineVolume, DriveChain, Cylinders, HorsePower, Torque, Fuel, Consumption, CO2Emission, EmissionClass, EmissionLabel, Brand, Model, FirstRegistration, BodyColor, PaintType, BodyColorOriginal, InteriorFittings, InteriorColors, Body, NrofDoors, NrofSeats, ModelCode, CountryVersion, ComfortAndConvenience, EntertainmentAndMedia, Extras, SafetyAndSecurity, Description, DateOfPost): Observable<any> {
     this.addNewCarBody = {
-      Title, Images, Kilometers, Price, Condition, PreviousOwners,
+      Title, Kilometers, Price, Condition, PreviousOwners,
       NextInspection, Warranty, FullService, NonSmokingVehicle, GearingType, EngineVolume,
       DriveChain, Cylinders, HorsePower, Torque, Fuel, Consumption,
       CO2Emission, EmissionClass, EmissionLabel, Brand, Model, FirstRegistration,
@@ -72,58 +73,67 @@ export class AppServicesService {
       NrofDoors, NrofSeats, ModelCode, CountryVersion, ComfortAndConvenience, EntertainmentAndMedia,
       Extras, SafetyAndSecurity, Description, DateOfPost
     }
-    const params = new HttpParams()
-      .set('Title', Title)
-      .set('Images', Images)
-      .set('Kilometers', Kilometers)
-      .set('Price', Price)
-      .set('Condition', Kilometers)
-      .set('PreviousOwners', Kilometers)
-      .set('NextInspection', NextInspection)
-      .set('Warranty', Warranty)
-      .set('FullService', FullService)
-      .set('NonSmokingVehicle', NonSmokingVehicle)
-      .set('GearingType', GearingType)
-      .set('EngineVolume', EngineVolume)
-      .set('DriveChain', DriveChain)
-      .set('Cylinders', Cylinders)
-      .set('HorsePower', HorsePower)
-      .set('Torque', Torque)
-      .set('Fuel', Fuel)
-      .set('Consumption', Consumption)
-      .set('CO2Emission', CO2Emission)
-      .set('EmissionClass', EmissionClass)
-      .set('EmissionLabel', EmissionLabel)
-      .set('Brand', Brand)
-      .set('Model', Model)
-      .set('FirstRegistration', FirstRegistration)
-      .set('BodyColor', BodyColor)
-      .set('PaintType', PaintType)
-      .set('BodyColorOriginal', BodyColorOriginal)
-      .set('InteriorFittings', InteriorFittings)
-      .set('InteriorColors', InteriorColors)
-      .set('Body', Body)
-      .set('NrofDoors', NrofDoors)
-      .set('NrofSeats', NrofSeats)
-      .set('ModelCode', ModelCode)
-      .set('CountryVersion', CountryVersion)
-      .set('ComfortAndConvenience', ComfortAndConvenience)
-      .set('EntertainmentAndMedia', EntertainmentAndMedia)
-      .set('Extras', Extras)
-      .set('SafetyAndSecurity', SafetyAndSecurity)
-      .set('Description', Description)
-      .set('DateOfPost', DateOfPost);
-
+    // const params = new HttpParams()
+    //   .set('Title', Title)
+    //   .set('Images', Images)
+    //   .set('Kilometers', Kilometers)
+    //   .set('Price', Price)
+    //   .set('Condition', Condition)
+    //   .set('PreviousOwners', PreviousOwners)
+    //   .set('NextInspection', NextInspection)
+    //   .set('Warranty', Warranty)
+    //   .set('FullService', FullService)
+    //   .set('NonSmokingVehicle', NonSmokingVehicle)
+    //   .set('GearingType', GearingType)
+    //   .set('EngineVolume', EngineVolume)
+    //   .set('DriveChain', DriveChain)
+    //   .set('Cylinders', Cylinders)
+    //   .set('HorsePower', HorsePower)
+    //   .set('Torque', Torque)
+    //   .set('Fuel', Fuel)
+    //   .set('Consumption', Consumption)
+    //   .set('CO2Emission', CO2Emission)
+    //   .set('EmissionClass', EmissionClass)
+    //   .set('EmissionLabel', EmissionLabel)
+    //   .set('Brand', Brand)
+    //   .set('Model', Model)
+    //   .set('FirstRegistration', FirstRegistration)
+    //   .set('BodyColor', BodyColor)
+    //   .set('PaintType', PaintType)
+    //   .set('BodyColorOriginal', BodyColorOriginal)
+    //   .set('InteriorFittings', InteriorFittings)
+    //   .set('InteriorColors', InteriorColors)
+    //   .set('Body', Body)
+    //   .set('NrofDoors', NrofDoors)
+    //   .set('NrofSeats', NrofSeats)
+    //   .set('ModelCode', ModelCode)
+    //   .set('CountryVersion', CountryVersion)
+    //   .set('ComfortAndConvenience', ComfortAndConvenience)
+    //   .set('EntertainmentAndMedia', EntertainmentAndMedia)
+    //   .set('Extras', Extras)
+    //   .set('SafetyAndSecurity', SafetyAndSecurity)
+    //   .set('Description', Description)
+    //   .set('DateOfPost', DateOfPost);
     // this.addNewCarBody = { NextInspection, EngineVolume, DriveChain, Consumption, CO2Emission, FirstRegistration }
     let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
-    console.log({ params })
-    return this.httpClient.post(`${this.url}/testaaa`, { params });
+    // console.log(this.addNewCarBody);
+    return this.httpClient.post(`${this.url}/addnewcar`, this.addNewCarBody);
   }
 
   public Register(firstName, lastName, email, password, phoneNumber, dataOfJoin): Observable<any> {
     this.registerBody = { firstName, lastName, email, password, phoneNumber, dataOfJoin }
     let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
     return this.httpClient.post(`${this.url}/register`, this.registerBody, { headers: headers });
+  }
+
+
+  public addCarPhoto(image: File, DateOfPost): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('multi-files', image);
+    // formData.append('DateOfPost', DateOfPost);
+
+    let headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
+    return this.httpClient.post(`${this.url}/multiple-upload/${DateOfPost}`, formData);
   }
 
 
@@ -167,4 +177,22 @@ export class AppServicesService {
 
   }
 
+  public deleteCar(id): Observable<any> {
+    return this.httpClient.delete(`${this.url}/deletecar/${id}`);
+  }
+
+
+  public addToFavourites(UserId, CarId): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
+    return this.httpClient.post(`${this.url}/addtofavourites/${UserId}/${CarId}`, { headers: headers });
+  }
+
+  public deleteFromFavourites(UserId, CarId): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
+    return this.httpClient.delete(`${this.url}/deletefromfavourites/${UserId}/${CarId}`, { headers: headers });
+  }
+
+  public getMyFavourties(userId): Observable<any> {
+    return this.httpClient.get<Car[]>(`${this.url}/myfavourties/${userId}`);
+  }
 }

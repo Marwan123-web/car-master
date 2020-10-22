@@ -1,13 +1,16 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { AppServicesService } from '../services/app-services.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslateConfigService } from '../services/translate-config.service';
 import * as moment from 'moment';
 import { AlertService } from '../services/alert.service';
 import * as dateFormat from 'dateformat';
 import { AuthService } from '../services/auth.service';
-
+declare var $: any;
+class ImageSnippet {
+  constructor(public src: string, public file: File) { }
+}
 @Component({
   selector: 'app-add-car',
   templateUrl: 'add-car.page.html',
@@ -28,10 +31,20 @@ export class addCarPage implements OnInit {
   hideEnvironment = false;
   hideProperties = false;
   hideEquipment = false;
-  constructor(private formBuilder: FormBuilder, private alertservice: AlertService, private translateConfigService: TranslateConfigService, private authenticationService: AuthService, private appservices: AppServicesService,) {
+
+
+  images: FileList;
+  urls = new Array<string>();
+  selectedFile: ImageSnippet;
+  sub: any;
+  selectedFiles: FileList;
+  carPhoto: any;
+  constructor(private _Activatedroute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private alertservice: AlertService, private translateConfigService: TranslateConfigService, private authenticationService: AuthService, private appservices: AppServicesService,) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     this.currentUser = this.authenticationService.currentUserValue;
   }
+
+
   // ----------------------  state attributes ---------------
   YesOrNoArray: any = ["Yes", "No"]
   //
@@ -56,7 +69,6 @@ export class addCarPage implements OnInit {
   ModelCode: any;
   CountryVersion: any;
   DateOfPost: any;
-  images: any;
   onSelectChangeVehicleCondition(event: any) {
     this.Vehicle_Condition = event.target.value;
     // console.log(this.Vehicle_Condation)
@@ -101,19 +113,6 @@ export class addCarPage implements OnInit {
     // console.log(this.gearingType)
   }
 
-  // engineVolumeArray: any = ["1500", "1600 ", "3500"];
-  // engineVolume: any;
-  // onSelectChangeengineVolume(event: any) {
-  //   this.engineVolume = event.target.value;
-  //   console.log(this.engineVolume)
-  // }
-
-  // driveChainArray: any = ["2", "4", "6"];
-  // driveChain: any;
-  // onSelectChangedriveChain(event: any) {
-  //   this.driveChain = event.target.value;
-  //   // console.log(this.driveChain)
-  // }
 
   cylindersArray: any = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
   cylinders: any;
@@ -121,20 +120,6 @@ export class addCarPage implements OnInit {
     this.cylinders = event.target.value;
     // console.log(this.cylinders)
   }
-
-  // horsePowerArray: any = ["90", "100", "200", "300"]
-  // horsePower: any;
-  // onSelectChangehorsePower(event: any) {
-  //   this.horsePower = event.target.value;
-  //   console.log(this.horsePower)
-  // }
-
-  // torqueArray: any = ["90", "100", "200", "300"]
-  // torque: any;
-  // onSelectChangetorque(event: any) {
-  //   this.torque = event.target.value;
-  //   // console.log(this.torque)
-  // }
 
   // ---------------------- environment attributes ---------------
   fuelArray: any = ["Petrol", "Diesel", "Electrically-chargeable", "Hybrid", "Alternative fuels"]
@@ -144,19 +129,6 @@ export class addCarPage implements OnInit {
     // console.log(this.fuel)
   }
 
-  // consumptionArray: any = ["90", "100", "200", "300"]
-  // consumption: any;
-  // onSelectChangeconsumption(event: any) {
-  //   this.consumption = event.target.value;
-  //   console.log(this.consumption)
-  // }
-
-  // CO2EmissionArray: any = ["90", "100", "200", "300"]
-  // CO2Emission: any;
-  // onSelectChangeCO2Emission(event: any) {
-  //   this.CO2Emission = event.target.value;
-  //   console.log(this.CO2Emission)
-  // }
 
   emissionClassArray: any = ["Euro 1", "Euro 2", "Euro 3", "Euro 4", "Euro 5", "Euro 6", "Euro 6c", "Euro 6d-TEMP", "Euro 6d"];
   emissionClass: any;
@@ -173,12 +145,6 @@ export class addCarPage implements OnInit {
   }
 
   // ---------------------- properties attributes ---------------
-  // brandArray: any = ["Audi", "BMW", "Ford", " Mercedes-Benz", "Opel", "Volkswagen", "Renault", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
-  // brand: any;
-  // onSelectChangebrand(event: any) {
-  //   this.brand = event.target.value;
-  //   // console.log(this.brand)
-  // }
 
 
   bodyColorArray: any = ["Beige", "Blue", "Brown", "Bronze", "Yellow", "Grey", "Green", "Red",
@@ -353,10 +319,8 @@ export class addCarPage implements OnInit {
     this.Description = Description.value;
 
     this.NextInspection = NextInspection1.value;
-    console.log(this.NextInspection)
 
     this.firstRegistration = firstRegistration1.value;
-    console.log(this.firstRegistration)
 
     this.EngineVolume = EngineVolume.value;
 
@@ -383,24 +347,50 @@ export class addCarPage implements OnInit {
     var now = new Date();
     this.DateOfPost = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
-    this.images = ["a.jbg","b.jbg"];
-
-    this.appservices.AddNewCar(this.Title, this.images, this.Kilometers, Price, this.Vehicle_Condition, this.PreviousOwners, this.NextInspection, this.Warranty, this.fullService, this.nonSmokingVehicle, this.gearingType, this.EngineVolume, this.DriveChain, this.cylinders, this.HorsePower, this.Torque
+    this.appservices.AddNewCar(this.Title, this.Kilometers, this.Price, this.Vehicle_Condition, this.PreviousOwners, this.NextInspection, this.Warranty, this.fullService, this.nonSmokingVehicle, this.gearingType, this.EngineVolume, this.DriveChain, this.cylinders, this.HorsePower, this.Torque
       , this.fuel, this.Consumption, this.CO2Emission, this.emissionClass, this.emissionLabel
       , this.Brand, this.Model, this.firstRegistration, this.bodyColor, this.paintType, this.BodyColorOriginal, this.interiorFittings, this.interiorColors,
       this.body, this.NrofDoors, this.NrofSeats, this.ModelCode, this.CountryVersion,
       this.comfortAndConvenience, this.entertainmentAndMedia, this.extras, this.safetyAndSecurity, this.Description, this.DateOfPost).subscribe(res => {
+        this.uploadFiles();
         this.alertservice.showAlert("&#xE876;", "success", res.msg);
-        // this.navigateToSettings();
+        this.navigateToHome();
       }, err => {
-        this.alertservice.showAlert("&#xE5CD;", "error", err.error);
+        this.alertservice.showAlert("&#xE5CD;", "error", err.error.msg);
       });
-
-
-
-
-
-
+  }
+  navigateToHome() {
+    this.router.navigate(['/tabs/home']);
+  }
+  detectFiles(event) {
+    this.urls = [];
+    const files = event.target.files;
+    if (files) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.urls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+      this.images = event.target.files;
+    }
+  }
+  uploadFiles() {
+    // this.message = '';
+    for (let i = 0; i < this.images.length; i++) {
+      this.addcarphotofun(this.images[i]);
+    }
+  }
+  addcarphotofun(image) {
+    this.sub = this._Activatedroute.paramMap.subscribe(params => {
+      this.appservices.addCarPhoto(image, this.DateOfPost).subscribe(res => {
+        this.carPhoto = res;
+      }, err => {
+        this.carPhoto = err;
+      }
+      );
+    });
   }
   hide(divID) {
     if (divID == "state") {
@@ -447,8 +437,8 @@ export class addCarPage implements OnInit {
   }
 
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.validations_form = this.formBuilder.group({
       carName: new FormControl('', Validators.required),
       kilometers: new FormControl('', Validators.compose([
