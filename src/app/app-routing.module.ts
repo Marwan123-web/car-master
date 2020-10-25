@@ -28,10 +28,7 @@ const routes: Routes = [
     redirectTo: 'start',
     pathMatch: 'full'
   },
-  {
-    path: 'favourites',
-    loadChildren: () => import('./favourites/favourites.module').then( m => m.FavouritesPageModule)
-  },
+
   // {
   //   path: 'cars',
   //   loadChildren: () => import('./cars/cars.module').then( m => m.CarsPageModule)

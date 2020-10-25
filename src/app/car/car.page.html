@@ -6,7 +6,7 @@
         <ion-title slot="start" *ngIf="cardata">
             {{cardata.Title}}
         </ion-title>
-        <ion-buttons slot="end" (click)="addToFavouritesFunction(cardata._id)">
+        <ion-buttons slot="end" *ngIf="currentUser" (click)="addToFavouritesFunction(cardata._id)">
             <ion-icon name="add" slot="start"></ion-icon>
         </ion-buttons>
     </ion-toolbar>

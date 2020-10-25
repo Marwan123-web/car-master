@@ -41,7 +41,7 @@ export class carPage implements OnInit {
     }
   }
   get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Normal;
+    return this.currentUser && this.currentUser.role === Role.Admin;
   }
   hide(divID) {
     if (divID == "state") {

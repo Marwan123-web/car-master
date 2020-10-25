@@ -1,12 +1,23 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { User } from '../_models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppServicesService } from '../services/app-services.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertService {
+  currentUser: User;
+  myFavourites: any;
+  carId: any;
 
-  constructor(public alertController: AlertController) { }
+  constructor(public alertController: AlertController, public router: Router, private appservices: AppServicesService, private _Activatedroute: ActivatedRoute, private authservice: AuthService,) {
+    if (this.authservice.currentUserValue) {
+      this.currentUser = this.authservice.currentUserValue;
+    }
+  }
 
   async showAlert(icon: string, style: string, msg: string) {
     const alert = await this.alertController.create({
@@ -297,4 +308,59 @@ export class AlertService {
 
     await alert.present();
   }
+
+
+
+  navigateToCar(id) {
+    this.router.navigate(['/tabs/car', id]);
+  }
+  deleteCarFromMyFavourites(id) {
+    this.appservices.deleteFromFavourites(this.currentUser._id, id).subscribe(res => {
+      this.myFavourites = res;
+    }, err => {
+      this.myFavourites = err;
+    }
+    );
+  }
+
+  async deleteOrviewpresentAlertConfirm(id): Promise<any> {
+    this.carId = id;
+    return new Promise(async (resolve) => {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Choose One!',
+        message: 'What Do You Need From This Car',
+        buttons: [
+          {
+            text: 'View Car',
+            handler: () => {
+              // console.log('Confirm Okay');
+              this.navigateToCar(this.carId);
+            }
+          },
+          {
+            text: 'Delete Car',
+            // cssClass: 'secondary',
+            handler: (Ok) => {
+              // console.log('Confirm Cancel: blah');
+              this.deleteCarFromMyFavourites(this.carId);
+              resolve('ok');
+            }
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+              // console.log('Confirm Cancel: blah');
+            }
+          }
+        ]
+      });
+      await alert.present();
+    });
+  }
+
+
+
 }

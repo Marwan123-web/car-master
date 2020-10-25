@@ -172,7 +172,7 @@ export class AppServicesService {
       .set('FirstRegistration', FirstRegistration)
       .set('Condition', Condition)
       .set('Kilometers', Kilometers);
-    let headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
     return this.httpClient.get(`${this.url}/filter/cars`, { params });
 
   }

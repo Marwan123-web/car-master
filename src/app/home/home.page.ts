@@ -5,9 +5,6 @@ import { TranslateConfigService } from '../services/translate-config.service';
 import { AuthService } from '../services/auth.service';
 import { AlertService } from '../services/alert.service';
 import { User } from '../_models';
-class ImageSnippet {
-  constructor(public src: string, public file: File) { }
-}
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -34,10 +31,6 @@ export class homePage implements OnInit {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     if (this.authservice.currentUserValue) {
       this.currentUser = this.authservice.currentUserValue;
-      console.log(this.currentUser)
-    }
-    else {
-      console.log('no user yet')
     }
   }
 

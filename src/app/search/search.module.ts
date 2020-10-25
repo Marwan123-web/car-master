@@ -14,8 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule.forChild(),
     CommonModule,
     FormsModule,
+    RouterModule.forChild([{ path: '', component: searchPage }]),
     searchPageRoutingModule
   ],
   declarations: [searchPage]
 })
-export class searchPageModule {}
+export class searchPageModule { }

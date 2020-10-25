@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { NavParams, Platform } from '@ionic/angular';
 import { TranslateConfigService } from '../services/translate-config.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
@@ -29,11 +29,11 @@ export class searchPage implements OnInit {
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     this.platform.ready().then(() => {
-      this.kilorangeVal = "150000";
-    })
+      this.kilorangeVal = "100000";
+    });
     this.platform.ready().then(() => {
       this.yearsrangeVal = "2000";
-    })
+    });
     if (this.authservice.currentUserValue) {
       this.currentUser = this.authservice.currentUserValue;
     }
@@ -50,7 +50,7 @@ export class searchPage implements OnInit {
   body: any;
   onSelectChangebody(event: any) {
     this.body = event.target.value;
-    // console.log(this.body)
+
   }
 
   VehicleConditionArray: any = ["New", "Used", "Employee's Car", "Antique / Classic", "Demonstration", "Pre-registered"];
@@ -59,23 +59,6 @@ export class searchPage implements OnInit {
     this.VehicleCondition = event.target.value;
   }
 
-  // searchfun(carName, BODY, yearsrangeVal, CONDITION, kilorangeVal) {
-  //   // this.appservices.searchForCars(carName,BODY ,yearsrangeVal,CONDITION,kilorangeVal).subscribe(res => {
-  //   //   this.searched = res;
-  //   // }, err => {
-  //   //   this.searched = err;
-  //   // });
-  //   // this.sub = this._Activatedroute.paramMap.subscribe(params => {
-  //   //   this.carId = params.get('carid');
-  //   // });
-  // }
   ngOnInit(): void {
-    this.validations_form = this.formBuilder.group({
-      carBrand: new FormControl('', Validators.required),
-
-    });
-    
-    this.sub = this._Activatedroute.paramMap.subscribe(params => {
-    });
   }
 }

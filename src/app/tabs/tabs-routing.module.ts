@@ -83,6 +83,10 @@ const routes: Routes = [
         path: 'contact-us',
         loadChildren: () => import('../contact-us/contact-us.module').then(m => m.contactUsPageModule)
       },
+      // {
+      //   path: 'favourites',
+      //   loadChildren: () => import('./favourites/favourites.module').then( m => m.FavouritesPageModule)
+      // },
       {
         path: '',
         redirectTo: '/tabs/home',

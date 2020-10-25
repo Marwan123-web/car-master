@@ -45,7 +45,7 @@ export class signInPage implements OnInit {
     let passwordinput = document.getElementById("passwordinput") as HTMLInputElement;
     this.email = emailinput.value, this.password = passwordinput.value;
     this.authservice.login(this.email, this.password).pipe(first()).subscribe(res => {
-      this.alertservice.showAlert("&#xE876;", "success", "You have successfully logged in!");
+      this.alertservice.showAlert2("&#xE876;", "success", "You have successfully logged in!");
       this.validations_form.reset();
       this.router.navigate(['/tabs/home']);
     }, err => {
