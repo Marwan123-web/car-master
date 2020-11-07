@@ -3,14 +3,15 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="tabs/home"></ion-back-button>
         </ion-buttons>
-        <ion-title slot="start">{{ 'REVIEWS' | translate }}</ion-title>
+        <ion-title slot="start">{{ 'ALLCARS' | translate }}</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <ion-list>
-        <ion-item class="ion-activatable ion-focusable ripple-parent" *ngFor="let mvc of AllMostViewsCarsdata" [routerLink]="['/tabs/car', mvc._id]">
+        <ion-item class="ion-activatable ion-focusable ripple-parent"
+            *ngFor="let mvc of AllMostViewsCarsdata; index as i" [routerLink]="['/tabs/car', mvc._id]">
             <ion-thumbnail slot="start">
-                <img src="../../assets/img/{{mvc.Images[0]}}">
+                <img [src]='AllCarsArrayOfImages[i]'>
             </ion-thumbnail>
             <ion-label>{{mvc.Title}}</ion-label>
             <!-- <ion-icon name="star-half-outline" slot="end"></ion-icon> -->

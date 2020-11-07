@@ -3,7 +3,8 @@ ion-header img {
 }
 
 .section {
-    --background: rgb(114, 110, 110);
+    --background: rgb(114, 110, 110)!important;
+    color: #000 !important;
     box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     vertical-align: middle;
@@ -11,10 +12,10 @@ ion-header img {
 }
 
 .section:active {
-    color: #ff0015;
+    color: #fff !important;
     box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
     ion-icon {
-        color: #ff0015;
+        color: #ff0015 !important;
     }
 }
 
@@ -25,4 +26,11 @@ ion-button {
 .car-photo {
     height: 130px;
     width: 280px;
+}
+.error-message{
+    color: #ff0015;
+}
+#car-re{
+    width: 80px !important;
+    height: 80px !important;
 }

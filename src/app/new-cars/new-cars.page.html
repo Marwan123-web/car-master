@@ -8,9 +8,10 @@
 </ion-header>
 <ion-content>
     <ion-list>
-        <ion-item class="ion-activatable ion-focusable ripple-parent" *ngFor="let nc of NewCarsdata" [routerLink]="['/tabs/car', nc._id]">
+        <ion-item class="ion-activatable ion-focusable ripple-parent" *ngFor="let nc of NewCarsdata; index as i"
+            [routerLink]="['/tabs/car', nc._id]">
             <ion-thumbnail slot="end">
-                <img src="../../assets/img/{{nc.Images[0]}}">
+                <img [src]='NewCarsArrayOfImages[i]'>
             </ion-thumbnail>
             <ion-label>{{nc.Title}}</ion-label>
         </ion-item>

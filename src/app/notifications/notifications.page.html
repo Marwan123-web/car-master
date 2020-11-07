@@ -3,16 +3,14 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="tabs/home"></ion-back-button>
         </ion-buttons>
-        <ion-title slot="start">{{ 'NOTIFICATIONS' | translate }}</ion-title>
+        <ion-title slot="start">{{ 'IMAGES' | translate }}</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-list>
-        <ion-item class="ion-activatable ion-focusable ripple-parent" [routerLink]="['/']">
-            <ion-thumbnail slot="start">
-                <img src="../../assets/img/car2.jpg">
-            </ion-thumbnail>
-            <ion-label>Notification 1</ion-label>
-        </ion-item>
-    </ion-list>
+    <ion-row class="ion-align-items-start">
+        <ion-col size="4" size-sm *ngFor="let ACP of AllCarsArrayOfImages; index as i">
+            <ion-img [src]='ACP' style="height: 115px !important"></ion-img>
+        </ion-col>
+    </ion-row>
+
 </ion-content>

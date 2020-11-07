@@ -11,10 +11,9 @@ export class profilePage {
   selectedLanguage: any;
   currentUser: User;
   constructor(private translateConfigService: TranslateConfigService, private authservice: AuthService,) {
+    this.authservice.currentUser.subscribe(x => this.currentUser = x);
+    this.currentUser = this.authservice.currentUserValue;
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
-    if (this.authservice.currentUserValue) {
-      this.currentUser = this.authservice.currentUserValue;
-    }
   }
 
 }

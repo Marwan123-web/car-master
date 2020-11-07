@@ -1,15 +1,11 @@
 <ion-content>
+    <!-- <img src="../../assets/img/car-logo.png" id="img"> -->
     <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide>
+        <ion-slide id="slide1">
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <img src="../../assets/img/car-logo.png" id="img">
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <h1>Find Your Dream</h1>
+                        <h1>Find Your Dream Car</h1>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -20,22 +16,48 @@
                 </ion-row>
             </ion-grid>
         </ion-slide>
-        <ion-slide>
-            <h1>Slide 2</h1>
+        <ion-slide id="slide2">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <h1>Fast Search</h1>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <p>Advanced search in the largest database of used cars and motorcycles in belgium.
+                        </p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-slide>
-        <ion-slide>
-            <h1>Slide 3</h1>
+        <ion-slide id="slide3">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <h1>Add Cars To Favourites</h1>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <p>You can add cars to your favourites list and check them later.
+                        </p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-slide>
     </ion-slides>
     <!-- fab placed to the bottom end -->
-    <ion-fab horizontal="end">
-        <ion-fab-button [routerLink]="['/tabs']">{{ 'SKIP' | translate }}
-            <ion-icon name="arrow-forward-circle"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
-    <div class="center buttons">
-        <ion-button class="join" [routerLink]="['/sign-up']">{{ 'JOINNOW' | translate }}</ion-button>
-        <br>
-        <ion-button fill="outline" [routerLink]="['/sign-in']">{{ 'SIGNIN' | translate }}</ion-button>
-    </div>
+    <ion-footer>
+        <ion-fab horizontal="end">
+            <ion-fab-button [routerLink]="['/tabs']">{{ 'SKIP' | translate }}
+                <ion-icon name="arrow-forward-circle"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+        <div class="center buttons">
+            <ion-button class="join" [routerLink]="['/sign-up']">{{ 'JOINNOW' | translate }}</ion-button>
+            <br>
+            <ion-button fill="outline" [routerLink]="['/sign-in']">{{ 'SIGNIN' | translate }}</ion-button>
+        </div>
+    </ion-footer>
 </ion-content>

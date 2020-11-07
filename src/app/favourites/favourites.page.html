@@ -7,12 +7,12 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <!-- [routerLink]="['/tabs/car', mf.x._id]" -->
+    <!-- <img  src="../../assets/img/No Results1.png"> -->
     <ion-list>
-        <ion-item ion-long-press class="ion-activatable ion-focusable ripple-parent" *ngFor="let mf of myFavourites"
-            (click)="chooseAction(mf.x._id)">
+        <ion-item ion-long-press class="ion-activatable ion-focusable ripple-parent"
+            *ngFor="let mf of myFavourites; index as i" [routerLink]="['/tabs/car', mf.x._id]">
             <ion-thumbnail slot="end">
-                <img src="../../assets/img/{{mf.x.Images[0]}}">
+                <img [src]='FavouritesCarsArrayOfImages[i]'>
             </ion-thumbnail>
             <ion-label>{{mf.x.Title}}</ion-label>
         </ion-item>

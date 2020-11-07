@@ -1,7 +1,12 @@
 ion-button {
     color: black;
 }
-
+ion-content {
+    --background: url('../../assets/img/logo333.jpg') no-repeat center center / cover;
+}
+ion-list{
+   opacity: 0.85;
+}
 // ion-content,
 // ion-title,
 // ion-icon,

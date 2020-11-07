@@ -3,20 +3,25 @@ ion-header img {
 }
 
 .section {
-    --background: rgb(160, 150, 150);
-    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    --background: rgb(160, 150, 150)!important;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2) !important;
     cursor: pointer;
     vertical-align: middle;
     text-align: center;
 }
 
 .section:active {
-    color: #ff0015;
-    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+    color: #ff0015!important;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6)!important;
     ion-icon {
-        color: #ff0015;
+        color: #ff0015!important;
     }
 }
 .car-img {
     width: 100% !important;
+    height: 300px;
+}
+
+ion-toggle{
+    --background: #000;
 }

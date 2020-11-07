@@ -3,7 +3,7 @@ import { AppServicesService } from '../services/app-services.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslateConfigService } from '../services/translate-config.service';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 import { AlertService } from '../services/alert.service';
 import * as dateFormat from 'dateformat';
 import { AuthService } from '../services/auth.service';
@@ -23,7 +23,7 @@ export class addCarPage implements OnInit {
   price: any;
   description: any;
   customPickerOptions: any;
-
+  customPopoverOptions: any;
   selectedLanguage: string;
   validations_form: FormGroup;
   hideState = false;
@@ -44,12 +44,13 @@ export class addCarPage implements OnInit {
     this.currentUser = this.authenticationService.currentUserValue;
   }
 
+  condition: any;
+  previousOwners: any;
+  warranty: any;
 
   // ----------------------  state attributes ---------------
   YesOrNoArray: any = ["Yes", "No"]
   //
-  VehicleConditionArray: any = ["New", "Used", "Employee's Car", "Antique / Classic", "Demonstration", "Pre-registered"];
-  Vehicle_Condition: any;
   NextInspection: any;
   firstRegistration: any;
   currentUser: any;
@@ -69,6 +70,9 @@ export class addCarPage implements OnInit {
   ModelCode: any;
   CountryVersion: any;
   DateOfPost: any;
+
+  VehicleConditionArray: any = ["New", "Used", "Employee's Car", "Antique / Classic", "Demonstration", "Pre-registered"];
+  Vehicle_Condition: any;
   onSelectChangeVehicleCondition(event: any) {
     this.Vehicle_Condition = event.target.value;
     // console.log(this.Vehicle_Condation)
@@ -255,7 +259,7 @@ export class addCarPage implements OnInit {
     "Sport seats",
     "Sport suspension",
     "Trailer hitch",
-    "Voice Contro",
+    "Voice Control",
   ];
   extras: any;
   onSelectChangeextras(event: any) {
@@ -502,7 +506,7 @@ export class addCarPage implements OnInit {
       { type: 'min', message: 'Kilometers must be at least 0.' },
     ],
     'price': [
-      { type: 'required', message: 'Kilometers is required.' },
+      { type: 'required', message: 'Price is required.' },
       { type: 'min', message: 'Kilometers must be at least 0.' },
     ],
     'NextInspection': [

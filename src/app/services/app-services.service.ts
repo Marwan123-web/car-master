@@ -6,7 +6,7 @@ import { User, Car } from '../_models';
   providedIn: 'root'
 })
 export class AppServicesService {
-  url: any = "http://192.168.1.5:3000";
+  url: any = "http://192.168.1.6:3000";
   carid: any;
   updateuserIdbody: any;
   updateuserbody: any;
@@ -191,8 +191,20 @@ export class AppServicesService {
     let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
     return this.httpClient.delete(`${this.url}/deletefromfavourites/${UserId}/${CarId}`, { headers: headers });
   }
+  public checkFavourties(UserId, CarId) {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
+    return this.httpClient.get(`${this.url}/checkinfavourties/${UserId}/${CarId}`, { headers: headers });
+  }
 
   public getMyFavourties(userId): Observable<any> {
     return this.httpClient.get<Car[]>(`${this.url}/myfavourties/${userId}`);
+  }
+
+
+  public getCarImages(imageurl) {
+    return this.httpClient.get(`${this.url}/image/${imageurl}`, { responseType: 'blob' });
+  }
+  public getAllCarImages() {
+    return this.httpClient.get(`${this.url}/allimages`);
   }
 }

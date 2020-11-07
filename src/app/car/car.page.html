@@ -6,21 +6,24 @@
         <ion-title slot="start" *ngIf="cardata">
             {{cardata.Title}}
         </ion-title>
-        <ion-buttons slot="end" *ngIf="currentUser" (click)="addToFavouritesFunction(cardata._id)">
-            <ion-icon name="add" slot="start"></ion-icon>
+        <ion-buttons slot="end" *ngIf="currentUser">
+            <ion-icon name="heart-outline" *ngIf="Notliked" slot="start" (click)="addToFavouritesFunction(cardata._id)">
+            </ion-icon>
+            <ion-icon name="heart" *ngIf="liked" slot="start" (click)="deleteCarFromMyFavourites(cardata._id)">
+            </ion-icon>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <div *ngIf="cardata">
         <ion-list>
-            <!-- <ion-item>
-                <ion-img src="../../assets/img/cars/car2.jpg"></ion-img>
+            <!-- <ion-item *ngFor="let image of imageToShow">
+                <ion-img [src]='image'></ion-img>
             </ion-item> -->
             <ion-slides pager="true" [options]="slideOpts">
-                <ion-slide *ngFor="let images of cardata.Images">
+                <ion-slide *ngFor="let image of arrayOfImages">
                     <ion-grid>
-                        <ion-img src="../../assets/img/{{images}}" class="car-img"></ion-img>
+                        <ion-img [src]='image' class="car-img"></ion-img>
                     </ion-grid>
                 </ion-slide>
 
@@ -30,11 +33,12 @@
                 <ion-label>
                     <p>{{ 'RESERVED' | translate}}</p>
                     <h3>{{cardata.Reserved}}</h3>
-                    <ion-button id="courses-semesters-info-statusBtn" *ngIf="isAdmin" value="View" class="ionBtn"
-                        style="width: 150px;" (click)="changeCarStatusfun(cardata.Reserved)">
-                        <!-- <ion-icon name="checkmark-circle-outline" slot="start" position="fixed"></ion-icon> -->
+                    <!-- <ion-button id="courses-semesters-info-statusBtn" *ngIf="isAdmin" value="View" class="ionBtn"
+                        style="width: 200px;" (click)="changeCarStatusfun(cardata.Reserved)">
                         {{ 'CHANGECARSTATUS' | translate}}
-                    </ion-button>
+                    </ion-button> -->
+                    <ion-toggle *ngIf="isAdmin" checked={{openOrClose}} (click)="changeCarStatusfun(cardata.Reserved)">
+                    </ion-toggle>
                 </ion-label>
             </ion-item>
 

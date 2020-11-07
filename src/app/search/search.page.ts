@@ -23,10 +23,17 @@ export class searchPage implements OnInit {
   currentUser: User;
   yearsrangeVal: string;
   sub: any;
-  constructor(public platform: Platform, private formBuilder: FormBuilder, private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
+  customAlertOptions: any;
+  carBrand: any;
+  BODY: any;
+  CONDITION: any;
 
 
+  constructor(public platform: Platform, private formBuilder: FormBuilder, private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute,
+    private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
   ) {
+    this.authservice.currentUser.subscribe(x => this.currentUser = x);
+    this.currentUser = this.authservice.currentUserValue;
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     this.platform.ready().then(() => {
       this.kilorangeVal = "100000";
@@ -34,9 +41,7 @@ export class searchPage implements OnInit {
     this.platform.ready().then(() => {
       this.yearsrangeVal = "2000";
     });
-    if (this.authservice.currentUserValue) {
-      this.currentUser = this.authservice.currentUserValue;
-    }
+
   }
 
 
@@ -58,7 +63,9 @@ export class searchPage implements OnInit {
   onSelectChangeVehicleCondition(event: any) {
     this.VehicleCondition = event.target.value;
   }
-
+  languageChanged() {
+    this.translateConfigService.setLanguage(this.selectedLanguage);
+  }
   ngOnInit(): void {
   }
 }

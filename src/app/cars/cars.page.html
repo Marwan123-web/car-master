@@ -1,18 +1,19 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button defaultHref="tabs/search"></ion-back-button>
-      </ion-buttons>
-      <ion-title slot="start">{{ 'CARS' | translate }}</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs/search"></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">{{ 'CARS' | translate }}</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-      <ion-item class="ion-activatable ion-focusable ripple-parent" *ngFor="let sc of searched" [routerLink]="['/tabs/car', sc._id]">
-          <ion-thumbnail slot="end">
-              <img src="../../assets/img/{{sc.Images[0]}}">
-          </ion-thumbnail>
-          <ion-label>{{sc.Title}}</ion-label>
-      </ion-item>
-  </ion-list>
+    <ion-list>
+        <ion-item class="ion-activatable ion-focusable ripple-parent" *ngFor="let sc of searched; index as i"
+            [routerLink]="['/tabs/car', sc._id]">
+            <ion-thumbnail slot="end">
+                <img [src]='SearchedCarsArrayOfImages[i]'>
+            </ion-thumbnail>
+            <ion-label>{{sc.Title}}</ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

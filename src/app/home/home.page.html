@@ -24,7 +24,7 @@
 
     <ion-row style="text-align: center;">
         <ion-col size="6">
-            <div class="div1" class="div1" [routerLink]="['/tabs/new-cars']">
+            <div class="div1" [routerLink]="['/tabs/new-cars']">
                 <ion-icon name="car-sport-outline"></ion-icon>
                 <br>
                 <p>{{ 'NEWCARS' | translate }}</p>
@@ -41,16 +41,16 @@
     <ion-row style="text-align: center;" id="row2">
         <ion-col size="6">
             <div class="div1" [routerLink]="['/tabs/notifications']">
-                <ion-icon name="notifications-outline"></ion-icon>
+                <ion-icon name="images-outline"></ion-icon>
                 <br>
-                <p>{{ 'NOTIFICATIONS' | translate }}</p>
+                <p>{{ 'CARIMAGES' | translate }}</p>
             </div>
         </ion-col>
         <ion-col size="6">
             <div class="div1" [routerLink]="['/tabs/reviews']">
-                <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                <ion-icon name="eye-outline"></ion-icon>
                 <br>
-                <p>{{ 'REVIEWS' | translate }}</p>
+                <p>{{ 'ALLCARS' | translate }}</p>
             </div>
         </ion-col>
     </ion-row>
@@ -58,56 +58,48 @@
         <h6 class="section">{{ 'LATESTCARS' | translate }}</h6>
         <ion-item>
             <ion-slides pager="true" [options]="slideOpts">
-                <ion-slide *ngFor="let rc of RecentCarsdata">
+                <ion-slide *ngFor="let rc of RecentCarsdata; index as i">
                     <ion-grid>
-                        <ion-img src="../../assets/img/{{rc.Images[0]}}" class="car-img"></ion-img>
-                        <ion-row class="car-name">
-                            <ion-col>
-                                <h1><a [routerLink]="['/tabs/car', rc._id]">{{rc.Title}}</a></h1>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <p>{{rc.Price}}€
-                                </p>
-                            </ion-col>
-                        </ion-row>
+                        <a [routerLink]="['/tabs/car', rc._id]">
+                            <ion-img [src]='RecentCarsArrayOfImages[i]' class="car-img"></ion-img>
+                            <ion-row class="car-name">
+                                <ion-col>
+                                    <h5>{{rc.Title}}</h5>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col>
+                                    <p>{{rc.Price}}€
+                                    </p>
+                                </ion-col>
+                            </ion-row>
+                        </a>
                     </ion-grid>
                 </ion-slide>
-                <!-- <ion-slide>
-                    <h1>Slide 2</h1>
-                </ion-slide>
-                <ion-slide>
-                    <h1>Slide 3</h1>
-                </ion-slide> -->
             </ion-slides>
         </ion-item>
 
         <h6 class="section">{{ 'MOSTVIEWEDCARS' | translate }}</h6>
         <ion-item>
-            <ion-slides pager="true" [options]="slideOpts">
-                <ion-slide *ngFor="let mvc of MostViewsCarsdata">
+            <ion-slides pager="true" [options]="slideOpts1">
+                <ion-slide *ngFor="let mvc of MostViewsCarsdata; index as i">
                     <ion-grid>
-                        <ion-img src="../../assets/img/{{mvc.Images[0]}}" class="car-img"></ion-img>
-                        <ion-row class="car-name">
-                            <ion-col>
-                                <h1><a [routerLink]="['/tabs/car', mvc._id]">{{mvc.Title}}</a></h1>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <p>{{mvc.Price}}€
-                                </p>
-                            </ion-col>
-                        </ion-row>
+                        <a [routerLink]="['/tabs/car', mvc._id]">
+                            <ion-img [src]='MostViewsCarsArrayOfImages[i]' class="car-img"></ion-img>
+                            <ion-row class="car-name">
+                                <ion-col>
+                                    <h5>{{mvc.Title}}</h5>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col>
+                                    <p>{{mvc.Price}}€
+                                    </p>
+                                </ion-col>
+                            </ion-row>
+                        </a>
                     </ion-grid>
                 </ion-slide>
-                <!-- <ion-slide>
-                    <h1>Slide 2</h1>
-                </ion-slide>
-                <ion-slide>
-                    <h1>Slide 3</h1>
-                </ion-slide> -->
             </ion-slides>
         </ion-item>
     </ion-list>
