@@ -6,7 +6,7 @@ import { User, Car } from '../_models';
   providedIn: 'root'
 })
 export class AppServicesService {
-  url: any = "http://192.168.1.6:3000";
+  url: any = "https://cairo-belguim.herokuapp.com";
   carid: any;
   updateuserIdbody: any;
   updateuserbody: any;
@@ -73,50 +73,7 @@ export class AppServicesService {
       NrofDoors, NrofSeats, ModelCode, CountryVersion, ComfortAndConvenience, EntertainmentAndMedia,
       Extras, SafetyAndSecurity, Description, DateOfPost
     }
-    // const params = new HttpParams()
-    //   .set('Title', Title)
-    //   .set('Images', Images)
-    //   .set('Kilometers', Kilometers)
-    //   .set('Price', Price)
-    //   .set('Condition', Condition)
-    //   .set('PreviousOwners', PreviousOwners)
-    //   .set('NextInspection', NextInspection)
-    //   .set('Warranty', Warranty)
-    //   .set('FullService', FullService)
-    //   .set('NonSmokingVehicle', NonSmokingVehicle)
-    //   .set('GearingType', GearingType)
-    //   .set('EngineVolume', EngineVolume)
-    //   .set('DriveChain', DriveChain)
-    //   .set('Cylinders', Cylinders)
-    //   .set('HorsePower', HorsePower)
-    //   .set('Torque', Torque)
-    //   .set('Fuel', Fuel)
-    //   .set('Consumption', Consumption)
-    //   .set('CO2Emission', CO2Emission)
-    //   .set('EmissionClass', EmissionClass)
-    //   .set('EmissionLabel', EmissionLabel)
-    //   .set('Brand', Brand)
-    //   .set('Model', Model)
-    //   .set('FirstRegistration', FirstRegistration)
-    //   .set('BodyColor', BodyColor)
-    //   .set('PaintType', PaintType)
-    //   .set('BodyColorOriginal', BodyColorOriginal)
-    //   .set('InteriorFittings', InteriorFittings)
-    //   .set('InteriorColors', InteriorColors)
-    //   .set('Body', Body)
-    //   .set('NrofDoors', NrofDoors)
-    //   .set('NrofSeats', NrofSeats)
-    //   .set('ModelCode', ModelCode)
-    //   .set('CountryVersion', CountryVersion)
-    //   .set('ComfortAndConvenience', ComfortAndConvenience)
-    //   .set('EntertainmentAndMedia', EntertainmentAndMedia)
-    //   .set('Extras', Extras)
-    //   .set('SafetyAndSecurity', SafetyAndSecurity)
-    //   .set('Description', Description)
-    //   .set('DateOfPost', DateOfPost);
-    // this.addNewCarBody = { NextInspection, EngineVolume, DriveChain, Consumption, CO2Emission, FirstRegistration }
     let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
-    // console.log(this.addNewCarBody);
     return this.httpClient.post(`${this.url}/addnewcar`, this.addNewCarBody);
   }
 
@@ -127,13 +84,13 @@ export class AppServicesService {
   }
 
 
-  public addCarPhoto(image: File, DateOfPost): Observable<any> {
+  public addCarPhoto(image: File, carId): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('multi-files', image);
+    formData.append('images', image);
     // formData.append('DateOfPost', DateOfPost);
 
     let headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
-    return this.httpClient.post(`${this.url}/multiple-upload/${DateOfPost}`, formData);
+    return this.httpClient.post(`${this.url}/multiple-upload/${carId}`, formData);
   }
 
 

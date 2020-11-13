@@ -7,6 +7,11 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.3" pullMin="50">
+        <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="Release to refresh"
+            refreshingSpinner="crescent">
+        </ion-refresher-content>
+    </ion-refresher>
     <ion-list>
         <ion-item class="ion-activatable ion-focusable ripple-parent" *ngFor="let nc of NewCarsdata; index as i"
             [routerLink]="['/tabs/car', nc._id]">

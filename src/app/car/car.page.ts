@@ -26,7 +26,9 @@ export class carPage implements OnInit {
   slideOpts: any = {
     initialSlide: 0,
     slidesPerView: 1,
-    autoplay: true,
+    autoplay: {
+      disableOnInteraction: false
+    }
   }
   increamented: any;
   currentUser: User;

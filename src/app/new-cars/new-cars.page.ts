@@ -29,6 +29,12 @@ export class newCarsPage implements OnInit {
       this.currentUser = this.authservice.currentUserValue;
     }
   }
+  doRefresh(event) {
+    setTimeout(() => {
+      this.ngOnInit();
+      event.target.complete();
+    }, 1500);
+  }
   emptynewcarsimageToShow() {
     //empty your array
     this.NewCarsImageToShow.length = 0;

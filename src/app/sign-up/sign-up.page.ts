@@ -53,10 +53,10 @@ export class signUpPage {
     let phonenumber = document.getElementById("phoneNumberinput") as HTMLInputElement;
     this.firstname = firstname.value, this.lastname = lastname.value, this.email = email.value, this.password = password.value, this.phonenumber = phonenumber.value;
     var now = new Date();
-    this.dataOfJoin = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+    this.dataOfJoin = dateFormat(now, "yyyy-mm-dd'T'HH:MM:ss");
     this.appservices.Register(this.firstname, this.lastname, this.email, this.password, this.phonenumber, this.dataOfJoin).subscribe(res => {
       this.authservice.login(this.email, this.password).pipe(first()).subscribe(res => {
-        this.alertservice.showAlert("&#xE876;", "success", res.msg);
+        this.alertservice.showAlert("&#xE876;", "success", "You have successfully logged in!");
         this.validations_form.reset();
         this.router.navigate([this.returnUrl]);
       }, err => {

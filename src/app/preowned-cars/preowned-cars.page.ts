@@ -28,6 +28,12 @@ export class preownedCarsPage implements OnInit {
       this.currentUser = this.authservice.currentUserValue;
     }
   }
+  doRefresh(event) {
+    setTimeout(() => {
+      this.ngOnInit();
+      event.target.complete();
+    }, 1500);
+  }
   emptypreownedcarsimageToShow() {
     //empty your array
     this.PreownedCarsImageToShow.length = 0;

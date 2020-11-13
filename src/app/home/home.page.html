@@ -59,9 +59,9 @@
         <ion-item>
             <ion-slides pager="true" [options]="slideOpts">
                 <ion-slide *ngFor="let rc of RecentCarsdata; index as i">
-                    <ion-grid>
+                    <ion-grid class="home-grid">
                         <a [routerLink]="['/tabs/car', rc._id]">
-                            <ion-img [src]='RecentCarsArrayOfImages[i]' class="car-img"></ion-img>
+                            <ion-img [src]='RecentCarsArrayOfImages[i]' class="car-home-img"></ion-img>
                             <ion-row class="car-name">
                                 <ion-col>
                                     <h5>{{rc.Title}}</h5>
@@ -83,9 +83,9 @@
         <ion-item>
             <ion-slides pager="true" [options]="slideOpts1">
                 <ion-slide *ngFor="let mvc of MostViewsCarsdata; index as i">
-                    <ion-grid>
+                    <ion-grid class="home-grid">
                         <a [routerLink]="['/tabs/car', mvc._id]">
-                            <ion-img [src]='MostViewsCarsArrayOfImages[i]' class="car-img"></ion-img>
+                            <ion-img [src]='MostViewsCarsArrayOfImages[i]' class="car-home-img"></ion-img>
                             <ion-row class="car-name">
                                 <ion-col>
                                     <h5>{{mvc.Title}}</h5>

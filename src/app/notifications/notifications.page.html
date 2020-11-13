@@ -7,10 +7,19 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-row class="ion-align-items-start">
-        <ion-col size="4" size-sm *ngFor="let ACP of AllCarsArrayOfImages; index as i">
-            <ion-img [src]='ACP' style="height: 115px !important"></ion-img>
-        </ion-col>
-    </ion-row>
+    <!-- <div *ngFor="let ITS of imageToShow2; index as i" class="div-img">
+        <ion-img *ngIf="isDisplayImage" [src]='ITS'></ion-img>
+    </div> -->
+    <div class="dynamic-image">
+        <img src="../../assets/img//bezkoder-bmwx67-1604792221137.jpeg" alt="" class="div-img">
+    </div>
+    <div class="static-images">
+        <ion-row class="ion-align-items-start">
+            <ion-col size="4" size-sm *ngFor="let ACP of AllCarsArrayOfImages; index as i">
+                <ion-img [src]='ACP' (click)="displayImage(AllCarsImagesPath[i])"></ion-img>
+            </ion-col>
+        </ion-row>
+    </div>
+
 
 </ion-content>

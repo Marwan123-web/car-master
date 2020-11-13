@@ -91,12 +91,6 @@ export class addCarPage implements OnInit {
     // console.log(this.Warranty)
   }
 
-  // NextInspection: any;
-  // onSelectChangeNextInspection(event: any) {
-  //   this.NextInspection = event.target.value;
-  //   // console.log(this.NextInspection)
-  // }
-
   fullService: any;
   onSelectChangefullService(event: any) {
     this.fullService = event.target.value;
@@ -173,7 +167,8 @@ export class addCarPage implements OnInit {
     // console.log(this.interiorFittings)
   }
 
-  interiorColorsArray: any = ["Beige", "Black", "Grey", "Brown", "Other"];
+  interiorColorsArray: any = ["Beige", "Blue", "Brown", "Bronze", "Yellow", "Grey", "Green", "Red",
+    "Black", "Silver", "Violet", "White", "Orange", "Gold"];
   interiorColors: any;
   onSelectChangeinteriorColors(event: any) {
     this.interiorColors = event.target.value;
@@ -349,15 +344,15 @@ export class addCarPage implements OnInit {
     this.CountryVersion = CountryVersion.value;
 
     var now = new Date();
-    this.DateOfPost = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+    this.DateOfPost = dateFormat(now, "yyyy-mm-dd'T'HH:MM:ss");
 
     this.appservices.AddNewCar(this.Title, this.Kilometers, this.Price, this.Vehicle_Condition, this.PreviousOwners, this.NextInspection, this.Warranty, this.fullService, this.nonSmokingVehicle, this.gearingType, this.EngineVolume, this.DriveChain, this.cylinders, this.HorsePower, this.Torque
       , this.fuel, this.Consumption, this.CO2Emission, this.emissionClass, this.emissionLabel
       , this.Brand, this.Model, this.firstRegistration, this.bodyColor, this.paintType, this.BodyColorOriginal, this.interiorFittings, this.interiorColors,
       this.body, this.NrofDoors, this.NrofSeats, this.ModelCode, this.CountryVersion,
       this.comfortAndConvenience, this.entertainmentAndMedia, this.extras, this.safetyAndSecurity, this.Description, this.DateOfPost).subscribe(res => {
-        this.uploadFiles();
-        this.alertservice.showAlert("&#xE876;", "success", res.msg);
+        this.uploadFiles(res);
+        this.alertservice.showAlert("&#xE876;", "success", "Car Added Successfuly");
         this.navigateToHome();
       }, err => {
         this.alertservice.showAlert("&#xE5CD;", "error", err.error.msg);
@@ -380,15 +375,15 @@ export class addCarPage implements OnInit {
       this.images = event.target.files;
     }
   }
-  uploadFiles() {
+  uploadFiles(carId) {
     // this.message = '';
     for (let i = 0; i < this.images.length; i++) {
-      this.addcarphotofun(this.images[i]);
+      this.addcarphotofun(this.images[i], carId);
     }
   }
-  addcarphotofun(image) {
+  addcarphotofun(image, carId) {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
-      this.appservices.addCarPhoto(image, this.DateOfPost).subscribe(res => {
+      this.appservices.addCarPhoto(image, carId).subscribe(res => {
         this.carPhoto = res;
       }, err => {
         this.carPhoto = err;
@@ -444,54 +439,24 @@ export class addCarPage implements OnInit {
 
   ngOnInit(): void {
     this.validations_form = this.formBuilder.group({
+      carimages: new FormControl('', Validators.required),
       carName: new FormControl('', Validators.required),
-      kilometers: new FormControl('', Validators.compose([
-        Validators.min(0),
-        Validators.required
-      ])),
-      price: new FormControl('', Validators.compose([
-        Validators.min(0),
-        Validators.required
-      ])),
+      kilometers: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      NextInspection: new FormControl('', [Validators.required]),
-      engineVolume: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      driveChain: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      horsePower: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      torque: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      consumption: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      CO2Emission: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      brand: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      model: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      bodyColorOriginal: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      modelCode: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      countryVersion: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      firstRegistration: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-
+      NextInspection: new FormControl('', Validators.required),
+      engineVolume: new FormControl('', Validators.required),
+      driveChain: new FormControl('', Validators.required),
+      horsePower: new FormControl('', Validators.required),
+      torque: new FormControl('', Validators.required),
+      consumption: new FormControl('', Validators.required),
+      CO2Emission: new FormControl('', Validators.required),
+      brand: new FormControl('', Validators.required),
+      model: new FormControl('', Validators.required),
+      bodyColorOriginal: new FormControl('', Validators.required),
+      modelCode: new FormControl('', Validators.required),
+      countryVersion: new FormControl('', Validators.required),
+      firstRegistration: new FormControl('', Validators.required),
     });
 
 
@@ -503,11 +468,11 @@ export class addCarPage implements OnInit {
     ],
     'kilometers': [
       { type: 'required', message: 'Kilometers is required.' },
-      { type: 'min', message: 'Kilometers must be at least 0.' },
+      // { type: 'min', message: 'Kilometers must be at least 0.' },
     ],
     'price': [
       { type: 'required', message: 'Price is required.' },
-      { type: 'min', message: 'Kilometers must be at least 0.' },
+      // { type: 'min', message: 'Price must be at least 0.' },
     ],
     'NextInspection': [
       { type: 'required', message: 'Next Inspection Date is required.' }

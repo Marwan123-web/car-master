@@ -17,13 +17,10 @@
 <ion-content>
     <div *ngIf="cardata">
         <ion-list>
-            <!-- <ion-item *ngFor="let image of imageToShow">
-                <ion-img [src]='image'></ion-img>
-            </ion-item> -->
             <ion-slides pager="true" [options]="slideOpts">
                 <ion-slide *ngFor="let image of arrayOfImages">
-                    <ion-grid>
-                        <ion-img [src]='image' class="car-img"></ion-img>
+                    <ion-grid class="car-grid">
+                        <ion-img [src]='image' class="car-page-img"></ion-img>
                     </ion-grid>
                 </ion-slide>
 
@@ -33,13 +30,14 @@
                 <ion-label>
                     <p>{{ 'RESERVED' | translate}}</p>
                     <h3>{{cardata.Reserved}}</h3>
-                    <!-- <ion-button id="courses-semesters-info-statusBtn" *ngIf="isAdmin" value="View" class="ionBtn"
+                </ion-label>
+                <!-- <ion-button id="courses-semesters-info-statusBtn" *ngIf="isAdmin" value="View" class="ionBtn"
                         style="width: 200px;" (click)="changeCarStatusfun(cardata.Reserved)">
                         {{ 'CHANGECARSTATUS' | translate}}
                     </ion-button> -->
-                    <ion-toggle *ngIf="isAdmin" checked={{openOrClose}} (click)="changeCarStatusfun(cardata.Reserved)">
-                    </ion-toggle>
-                </ion-label>
+                <ion-toggle *ngIf="isAdmin" checked={{openOrClose}} (click)="changeCarStatusfun(cardata.Reserved)">
+                </ion-toggle>
+
             </ion-item>
 
             <ion-item>

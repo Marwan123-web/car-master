@@ -5,7 +5,7 @@ import { TranslateConfigService } from '../services/translate-config.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../_models';
 import { AlertService } from '../services/alert.service';
-
+// import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 @Component({
   selector: 'app-notifications',
   templateUrl: 'notifications.page.html',
@@ -20,12 +20,46 @@ export class notifications implements OnInit {
   AllCarsImageToShow: Array<any> = [];
   isImageLoading: boolean;
   AllCarsImagesPath: any;
+  isDisplayImage: boolean = false;
+  isImageLoading2: boolean;
+  imageToShow: Array<any> = [];
+  imageToShow2: Array<any> = [];
 
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     if (this.authservice.currentUserValue) {
       this.currentUser = this.authservice.currentUserValue;
+    }
+  }
+  emptycarimageToShow() {
+    //empty your array
+    this.imageToShow.length = 0;
+  }
+  createImageFromBlobOnePic(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow.push(reader.result);
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+    this.imageToShow2 = this.imageToShow;
+  }
+  displayImage(imageurl) {
+    if (this.isDisplayImage == false) {
+      this.appservices.getCarImages(imageurl).subscribe(data => {
+        this.createImageFromBlobOnePic(data);
+        this.isImageLoading2 = false;
+      }, error => {
+        this.isImageLoading2 = false;
+        console.log(error);
+      });
+      this.isDisplayImage = true;
+    }
+    else if (this.isDisplayImage == true) {
+      this.isDisplayImage = false;
+      this.emptycarimageToShow();
     }
   }
   emptyAllcarsimageToShow() {
@@ -36,9 +70,9 @@ export class notifications implements OnInit {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.appservices.getAllCarImages().subscribe(res => {
         this.emptyAllcarsimageToShow();
+        this.emptycarimageToShow();
         this.AllCarsImagesPath = res;
         for (let i = 0; i < this.AllCarsImagesPath.length; i++) {
-          // this.allcarPhoto = this.AllMostViewsCarsdata[i].Images[0].filename;
           this.isImageLoading = true;
           this.appservices.getCarImages(this.AllCarsImagesPath[i]).subscribe(data => {
             this.createImageFromBlob(data);

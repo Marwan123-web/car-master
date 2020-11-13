@@ -7,7 +7,7 @@
 </ion-header>
 <ion-content>
     <div class="center">
-        <h2 class="header">Welcome</h2>
+        <h2 class="header">{{ 'WELCOME' | translate }}</h2>
         <h2 class="username" *ngIf="currentUser">{{currentUser.firstName}} <span> </span> {{currentUser.lastName}}</h2>
         <ion-button fill="outline" [routerLink]="['/sign-in']" *ngIf="!currentUser">{{ 'SIGNINSIGNUP' | translate }}
         </ion-button>

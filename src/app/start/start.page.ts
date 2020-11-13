@@ -13,7 +13,9 @@ export class startPage {
   slideOpts = {
     initialSlide: 0,
     speed: 1000,
-    autoplay: true
+    autoplay: {
+      disableOnInteraction: false
+    }
   };
   slides: any;
   selectedLanguage: any;

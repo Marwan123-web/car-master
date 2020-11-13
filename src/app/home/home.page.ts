@@ -17,12 +17,16 @@ export class homePage implements OnInit {
   slideOpts = {
     initialSlide: 0,
     speed: 500,
-    autoplay: true
+    autoplay: {
+      disableOnInteraction: false
+    }
   };
   slideOpts1 = {
     initialSlide: 0,
     speed: 900,
-    autoplay: true
+    autoplay: {
+      disableOnInteraction: false
+    }
   };
 
   RecentCarsdata: any;

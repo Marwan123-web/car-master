@@ -28,6 +28,12 @@ export class reviews implements OnInit {
       this.currentUser = this.authservice.currentUserValue;
     }
   }
+  doRefresh(event) {
+    setTimeout(() => {
+      this.ngOnInit();
+      event.target.complete();
+    }, 1500);
+  }
   emptyAllcarsimageToShow() {
     //empty your array
     this.AllCarsImageToShow.length = 0;

@@ -8,15 +8,11 @@
 
 
 <ion-content>
-    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content>
-        </ion-refresher-content>
-    </ion-refresher> -->
     <form [formGroup]="validations_form" (ngSubmit)="AddNewCarfun()">
         <ion-list>
             <div class="center">
-                Select images: <input type="file" name="multi-files" multiple id="input-multi-files"
-                    class="form-control-file border" (change)="detectFiles($event)" />
+                Select images: <input type="file" formControlName="carimages" name="multi-files" multiple
+                    id="input-multi-files" class="form-control-file border" (change)="detectFiles($event)" />
             </div>
             <div>
                 <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" id="car-re">
@@ -149,7 +145,8 @@
                         [interfaceOptions]="customPopoverOptions" interface="popover"
                         placeholder="{{ 'SELECTONE' | translate }}" id='warranty'
                         (ionChange)="onSelectChangeWarranty($event)" aria-required="required">
-                        <ion-select-option *ngFor="let warranty of YesOrNoArray" value="{{warranty}}">{{warranty| translate}}
+                        <ion-select-option *ngFor="let warranty of YesOrNoArray" value="{{warranty}}">
+                            {{warranty| translate}}
                         </ion-select-option>
                     </ion-select>
                 </ion-item>
@@ -308,7 +305,8 @@
                         [interfaceOptions]="customPopoverOptions" interface="popover"
                         placeholder="{{ 'SELECTONE' | translate }}" id='fuel' (ionChange)="onSelectChangefuel($event)"
                         aria-required="required">
-                        <ion-select-option *ngFor="let fuel of fuelArray" value="{{fuel}}">{{fuel| translate}}</ion-select-option>
+                        <ion-select-option *ngFor="let fuel of fuelArray" value="{{fuel}}">{{fuel| translate}}
+                        </ion-select-option>
                     </ion-select>
                 </ion-item>
 
@@ -449,7 +447,8 @@
                         [interfaceOptions]="customPopoverOptions" interface="popover"
                         placeholder="{{ 'SELECTONE' | translate }}" id='bodyColor'
                         (ionChange)="onSelectChangebodyColor($event)" aria-required="required">
-                        <ion-select-option *ngFor="let bodycolor of bodyColorArray" value="{{bodycolor}}">{{bodycolor| translate}}
+                        <ion-select-option *ngFor="let bodycolor of bodyColorArray" value="{{bodycolor}}">
+                            {{bodycolor| translate}}
                         </ion-select-option>
                     </ion-select>
                 </ion-item>
@@ -463,7 +462,8 @@
                         [interfaceOptions]="customPopoverOptions" interface="popover"
                         placeholder="{{ 'SELECTONE' | translate }}" id='paintType'
                         (ionChange)="onSelectChangepaintType($event)" aria-required="required">
-                        <ion-select-option *ngFor="let painttype of paintTypeArray" value="{{painttype}}">{{painttype| translate}}
+                        <ion-select-option *ngFor="let painttype of paintTypeArray" value="{{painttype}}">
+                            {{painttype| translate}}
                         </ion-select-option>
                     </ion-select>
                 </ion-item>
