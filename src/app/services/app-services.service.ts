@@ -74,6 +74,7 @@ export class AppServicesService {
       Extras, SafetyAndSecurity, Description, DateOfPost
     }
     let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
+    // console.log(this.addNewCarBody);
     return this.httpClient.post(`${this.url}/addnewcar`, this.addNewCarBody);
   }
 

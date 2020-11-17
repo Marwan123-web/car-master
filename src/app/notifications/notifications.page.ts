@@ -67,14 +67,14 @@ export class notifications implements OnInit {
     this.AllCarsImageToShow.length = 0;
   }
   getAllCarsImages() {
+    this.emptyAllcarsimageToShow();
+    this.emptycarimageToShow();
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.appservices.getAllCarImages().subscribe(res => {
-        this.emptyAllcarsimageToShow();
-        this.emptycarimageToShow();
         this.AllCarsImagesPath = res;
         for (let i = 0; i < this.AllCarsImagesPath.length; i++) {
           this.isImageLoading = true;
-          this.appservices.getCarImages(this.AllCarsImagesPath[i]).subscribe(data => {
+          this.appservices.getCarImages(this.AllCarsImagesPath[i].name).subscribe(data => {
             this.createImageFromBlob(data);
             this.isImageLoading = false;
           }, error => {
