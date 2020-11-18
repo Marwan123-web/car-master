@@ -15,11 +15,11 @@
     </div> -->
     <div class="static-images">
         <ion-row class="ion-align-items-start">
-            <ion-col size="4" size-sm *ngFor="let ACP of AllCarsArrayOfImages; index as i">
-                <ion-img [src]='ACP' (click)="displayImage(AllCarsImagesPath[i].name)"></ion-img>
+            <ion-col size="4" *ngFor="let ACP of AllCarsArrayOfImages; index as i">
+                <ion-img [src]='ACP'></ion-img>
             </ion-col>
         </ion-row>
     </div>
-
+    <!-- (click)="displayImage(AllCarsImagesPath[i].name)" -->
 
 </ion-content>

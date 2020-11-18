@@ -42,7 +42,7 @@ export class carPage implements OnInit {
   liked: boolean;
   Notliked: boolean;
   openOrClose: boolean;
-
+  showMore: boolean = false;
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
     private sanitizer: DomSanitizer
 
@@ -98,7 +98,11 @@ export class carPage implements OnInit {
     }
 
   }
-
+  trimString(text, length) {
+    return text.length > length ?
+      text.substring(0, length) + '...' :
+      text;
+  }
   changeCarStatusfun(status) {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.carId = params.get('carid');
@@ -220,6 +224,9 @@ export class carPage implements OnInit {
   }
   ngOnInit(): void {
     this.getcar();
-    this.checkFavourtiesFun();
+    if (this.currentUser) {
+      this.checkFavourtiesFun();
+    }
+
   }
 }

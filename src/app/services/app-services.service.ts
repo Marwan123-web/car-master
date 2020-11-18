@@ -6,7 +6,9 @@ import { User, Car } from '../_models';
   providedIn: 'root'
 })
 export class AppServicesService {
-  url: any = "https://cairo-belguim.herokuapp.com";
+  // url: any = "https://cairo-belguim.herokuapp.com";
+  url: any = "http://192.168.1.7:3000";
+
   carid: any;
   updateuserIdbody: any;
   updateuserbody: any;

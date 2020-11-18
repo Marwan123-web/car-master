@@ -3,9 +3,9 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="tabs/home"></ion-back-button>
         </ion-buttons>
-        <ion-title slot="start" *ngIf="cardata">
+        <!-- <ion-title slot="start" *ngIf="cardata">
             {{cardata.Title}}
-        </ion-title>
+        </ion-title> -->
         <ion-buttons slot="end" *ngIf="currentUser">
             <ion-icon name="heart-outline" *ngIf="Notliked" slot="start" (click)="addToFavouritesFunction(cardata._id)">
             </ion-icon>
@@ -57,7 +57,12 @@
             <ion-item>
                 <ion-label class="ion-text-wrap">
                     <p>{{ 'DESCRIPTION' | translate}}</p>
-                    <h3>{{cardata.Description}}</h3>
+                    <!-- <h3>{{cardata.Description}}</h3> -->
+                    <span *ngIf="!showMore"> {{trimString(cardata.Description,100)}}</span>
+                    <span *ngIf="showMore"> {{cardata.Description}} </span>
+                    <div class="seemoreless" *ngIf="cardata.Description.length> 100" (click)="showMore = !showMore">Show
+                        <span>{{showMore ? 'less' : 'More'}}</span>
+                    </div>
                 </ion-label>
             </ion-item>
 

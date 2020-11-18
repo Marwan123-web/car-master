@@ -32,49 +32,59 @@ export class notifications implements OnInit {
       this.currentUser = this.authservice.currentUserValue;
     }
   }
-  emptycarimageToShow() {
-    //empty your array
-    this.imageToShow.length = 0;
-  }
-  createImageFromBlobOnePic(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.imageToShow.push(reader.result);
-    }, false);
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-    this.imageToShow2 = this.imageToShow;
-  }
-  displayImage(imageurl) {
-    if (this.isDisplayImage == false) {
-      this.appservices.getCarImages(imageurl).subscribe(data => {
-        this.createImageFromBlobOnePic(data);
-        this.isImageLoading2 = false;
-      }, error => {
-        this.isImageLoading2 = false;
-        console.log(error);
-      });
-      this.isDisplayImage = true;
-    }
-    else if (this.isDisplayImage == true) {
-      this.isDisplayImage = false;
-      this.emptycarimageToShow();
-    }
-  }
+  // emptycarimageToShow() {
+  //   //empty your array
+  //   this.imageToShow.length = 0;
+  // }
+  // createImageFromBlobOnePic(image: Blob) {
+  //   let reader = new FileReader();
+  //   reader.addEventListener("load", () => {
+  //     this.imageToShow.push(reader.result);
+  //   }, false);
+  //   if (image) {
+  //     reader.readAsDataURL(image);
+  //   }
+  //   this.imageToShow2 = this.imageToShow;
+  // }
+  // displayImage(imageurl) {
+  //   if (this.isDisplayImage == false) {
+  //     this.appservices.getCarImages(imageurl).subscribe(data => {
+  //       this.createImageFromBlobOnePic(data);
+  //       this.isImageLoading2 = false;
+  //     }, error => {
+  //       this.isImageLoading2 = false;
+  //       console.log(error);
+  //     });
+  //     this.isDisplayImage = true;
+  //   }
+  //   else if (this.isDisplayImage == true) {
+  //     this.isDisplayImage = false;
+  //     this.emptycarimageToShow();
+  //   }
+  // }
   emptyAllcarsimageToShow() {
     //empty your array
     this.AllCarsImageToShow.length = 0;
   }
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.AllCarsImageToShow.push(reader.result);
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+    this.AllCarsArrayOfImages = this.AllCarsImageToShow;
+  }
   getAllCarsImages() {
-    this.emptyAllcarsimageToShow();
-    this.emptycarimageToShow();
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
+      this.emptyAllcarsimageToShow();
+      // this.emptycarimageToShow();
       this.appservices.getAllCarImages().subscribe(res => {
         this.AllCarsImagesPath = res;
         for (let i = 0; i < this.AllCarsImagesPath.length; i++) {
           this.isImageLoading = true;
-          this.appservices.getCarImages(this.AllCarsImagesPath[i].name).subscribe(data => {
+          this.appservices.getCarImages(this.AllCarsImagesPath[i].name).subscribe((data) => {
             this.createImageFromBlob(data);
             this.isImageLoading = false;
           }, error => {
@@ -88,16 +98,7 @@ export class notifications implements OnInit {
       );
     });
   }
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.AllCarsImageToShow.push(reader.result);
-    }, false);
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-    this.AllCarsArrayOfImages = this.AllCarsImageToShow;
-  }
+
   ngOnInit(): void {
     this.getAllCarsImages();
   }
