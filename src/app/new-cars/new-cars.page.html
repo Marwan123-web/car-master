@@ -16,7 +16,7 @@
         <ion-item class="ion-activatable ion-focusable ripple-parent" *ngFor="let nc of NewCarsdata; index as i"
             [routerLink]="['/tabs/car', nc._id]">
             <ion-thumbnail slot="end">
-                <img [src]='NewCarsArrayOfImages[i]'>
+                <img src="{{url}}/image/{{nc.Images[0].filename}}">
             </ion-thumbnail>
             <ion-label>{{nc.Title}}</ion-label>
         </ion-item>

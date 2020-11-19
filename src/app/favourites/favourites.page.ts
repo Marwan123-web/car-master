@@ -17,50 +17,22 @@ export class FavouritesPage implements OnInit {
   sub: any;
   myFavourites: any;
   carId: any;
-  AllFavouritesCarsImageToShow: Array<any> = [];
-  favouritescarPhoto: any;
-  isImageLoading: boolean;
-  FavouritesCarsArrayOfImages: Array<any> = [];
+  url: any = "https://cairo-belguim.herokuapp.com";
+  // url: any = "http://192.168.1.7:3000";
   constructor(public router: Router, private alertservice: AlertService, private translateConfigService: TranslateConfigService, private appservices: AppServicesService, private _Activatedroute: ActivatedRoute, private authservice: AuthService,) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     if (this.authservice.currentUserValue) {
       this.currentUser = this.authservice.currentUserValue;
     }
   }
-  emptyFavouritescarsimageToShow() {
-    //empty your array
-    this.AllFavouritesCarsImageToShow.length = 0;
-  }
   getMyFavourites() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.appservices.getMyFavourties(this.currentUser._id).subscribe(res => {
         this.myFavourites = res;
-        this.emptyFavouritescarsimageToShow();
-        for (let i = 0; i < this.myFavourites.length; i++) {
-          this.favouritescarPhoto = this.myFavourites[i].x.Images[0].filename;
-          this.isImageLoading = true;
-          this.appservices.getCarImages(this.favouritescarPhoto).subscribe(data => {
-            this.createImageFromBlob(data);
-            this.isImageLoading = false;
-          }, error => {
-            this.isImageLoading = false;
-            console.log(error);
-          });
-        }
       }, err => {
         this.myFavourites = err;
       });
     });
-  }
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.AllFavouritesCarsImageToShow.push(reader.result);
-    }, false);
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-    this.FavouritesCarsArrayOfImages = this.AllFavouritesCarsImageToShow;
   }
   ngOnInit() {
     this.getMyFavourites();

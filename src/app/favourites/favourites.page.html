@@ -12,7 +12,7 @@
         <ion-item ion-long-press class="ion-activatable ion-focusable ripple-parent"
             *ngFor="let mf of myFavourites; index as i" [routerLink]="['/tabs/car', mf.x._id]">
             <ion-thumbnail slot="end">
-                <img [src]='FavouritesCarsArrayOfImages[i]'>
+                <img src="{{url}}/image/{{mf.x.Images[0].filename}}">
             </ion-thumbnail>
             <ion-label>{{mf.x.Title}}</ion-label>
         </ion-item>

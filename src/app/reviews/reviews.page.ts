@@ -17,10 +17,8 @@ export class reviews implements OnInit {
   currentUser: User;
   sub: any;
   AllMostViewsCarsdata: any;
-  AllCarsImageToShow: Array<any> = [];
-  AllCarsArrayOfImages: Array<any> = [];
-  isImageLoading: boolean;
-  allcarPhoto: any;
+  url: any = "https://cairo-belguim.herokuapp.com";
+  // url: any = "http://192.168.1.7:3000";
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
@@ -34,43 +32,18 @@ export class reviews implements OnInit {
       event.target.complete();
     }, 1500);
   }
-  emptyAllcarsimageToShow() {
-    //empty your array
-    this.AllCarsImageToShow.length = 0;
-  }
+
   getAllMostViewsCars() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.appservices.AllMostViewsCars().subscribe(res => {
         this.AllMostViewsCarsdata = res;
-        this.emptyAllcarsimageToShow();
-        for (let i = 0; i < this.AllMostViewsCarsdata.length; i++) {
-          this.allcarPhoto = this.AllMostViewsCarsdata[i].Images[0].filename;
-          this.isImageLoading = true;
-          this.appservices.getCarImages(this.allcarPhoto).subscribe(data => {
-            this.createImageFromBlob(data);
-            this.isImageLoading = false;
-          }, error => {
-            this.isImageLoading = false;
-            console.log(error);
-          });
-
-        }
       }, err => {
         this.AllMostViewsCarsdata = err;
       }
       );
     });
   }
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.AllCarsImageToShow.push(reader.result);
-    }, false);
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-    this.AllCarsArrayOfImages = this.AllCarsImageToShow;
-  }
+
   ngOnInit(): void {
     this.getAllMostViewsCars();
 

@@ -61,9 +61,13 @@ const routes: Routes = [
         path: 'preowned-cars',
         loadChildren: () => import('../preowned-cars/preowned-cars.module').then(m => m.preownedCarsPageModule)
       },
+      // {
+      //   path: 'notifications',
+      //   loadChildren: () => import('../notifications/notifications.module').then(m => m.notificationsPageModule)
+      // },
       {
-        path: 'notifications',
-        loadChildren: () => import('../notifications/notifications.module').then(m => m.notificationsPageModule)
+        path: 'all-cars-photos',
+        loadChildren: () => import('../all-cars-photos/all-cars-photos.module').then( m => m.AllCarsPhotosPageModule)
       },
       {
         path: 'reviews',

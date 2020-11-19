@@ -23,20 +23,15 @@ export class CarsPage implements OnInit {
   carCondition: string;
   lessthankm: string;
   searched: any;
-  SearchedCarsImageToShow: Array<any> = [];
-  SearchedCarsArrayOfImages: Array<any> = [];
-  isImageLoading: boolean;
-  SearchedcarPhoto: any;
+
+  url: any = "https://cairo-belguim.herokuapp.com";
+  // url: any = "http://192.168.1.7:3000";
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     if (this.authservice.currentUserValue) {
       this.currentUser = this.authservice.currentUserValue;
     }
-  }
-  emptysearchedcarsimageToShow() {
-    //empty your array
-    this.SearchedCarsImageToShow.length = 0;
   }
   getSearchedCars() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
@@ -47,32 +42,10 @@ export class CarsPage implements OnInit {
       this.lessthankm = params.get('kilorangeVal');
       this.appservices.searchForCars(this.carBrand, this.bodyType, this.lessthanyear, this.carCondition, this.lessthankm).subscribe(res => {
         this.searched = res;
-        this.emptysearchedcarsimageToShow();
-        for (let i = 0; i < this.searched.length; i++) {
-          this.SearchedcarPhoto = this.searched[i].Images[0].filename;
-          this.isImageLoading = true;
-          this.appservices.getCarImages(this.SearchedcarPhoto).subscribe(data => {
-            this.createImageFromBlob(data);
-            this.isImageLoading = false;
-          }, error => {
-            this.isImageLoading = false;
-            console.log(error);
-          });
-        }
       }, err => {
         this.searched = err;
       });
     });
-  }
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.SearchedCarsImageToShow.push(reader.result);
-    }, false);
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-    this.SearchedCarsArrayOfImages = this.SearchedCarsImageToShow;
   }
   ngOnInit(): void {
     this.getSearchedCars();

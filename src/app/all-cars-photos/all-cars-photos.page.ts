@@ -5,18 +5,19 @@ import { TranslateConfigService } from '../services/translate-config.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../_models';
 import { AlertService } from '../services/alert.service';
-
 @Component({
-  selector: 'app-preowned-cars',
-  templateUrl: 'preowned-cars.page.html',
-  styleUrls: ['preowned-cars.page.scss'],
+  selector: 'app-all-cars-photos',
+  templateUrl: './all-cars-photos.page.html',
+  styleUrls: ['./all-cars-photos.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class preownedCarsPage implements OnInit {
+export class AllCarsPhotosPage implements OnInit {
   selectedLanguage: string;
   currentUser: User;
   sub: any;
-  UsedCarsdata: any;
+  AllCarsImagesPath: any;
+  isDisplayImage: boolean = false;
+  imageToShow: Array<any> = [];
   url: any = "https://cairo-belguim.herokuapp.com";
   // url: any = "http://192.168.1.7:3000";
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
@@ -26,23 +27,19 @@ export class preownedCarsPage implements OnInit {
       this.currentUser = this.authservice.currentUserValue;
     }
   }
-  doRefresh(event) {
-    setTimeout(() => {
-      this.ngOnInit();
-      event.target.complete();
-    }, 1500);
-  }
-  getUsedCars() {
+  getAllCarsImages() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
-      this.appservices.getUsedCars().subscribe(res => {
-        this.UsedCarsdata = res;
+      this.appservices.getAllCarImages().subscribe(res => {
+        this.AllCarsImagesPath = res;
       }, err => {
-        this.UsedCarsdata = err;
+        this.AllCarsImagesPath = err;
       }
       );
     });
   }
+
   ngOnInit(): void {
-    this.getUsedCars();
+    this.getAllCarsImages();
   }
 }
+

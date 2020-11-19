@@ -18,10 +18,8 @@ export class newCarsPage implements OnInit {
   sub: any;
   NewCarsdata: any;
   newcarPhoto: any;
-  isImageLoading: boolean;
-  NewCarsImageToShow: Array<any> = [];
-  NewCarsArrayOfImages: Array<any> = [];
-
+  url: any = "https://cairo-belguim.herokuapp.com";
+  // url: any = "http://192.168.1.7:3000";
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
@@ -35,42 +33,15 @@ export class newCarsPage implements OnInit {
       event.target.complete();
     }, 1500);
   }
-  emptynewcarsimageToShow() {
-    //empty your array
-    this.NewCarsImageToShow.length = 0;
-  }
   getNewCars() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.appservices.getNewCars().subscribe(res => {
         this.NewCarsdata = res;
-        this.emptynewcarsimageToShow();
-        for (let i = 0; i < this.NewCarsdata.length; i++) {
-          this.newcarPhoto = this.NewCarsdata[i].Images[0].filename;
-          this.isImageLoading = true;
-          this.appservices.getCarImages(this.newcarPhoto).subscribe(data => {
-            this.createImageFromBlob(data);
-            this.isImageLoading = false;
-          }, error => {
-            this.isImageLoading = false;
-            console.log(error);
-          });
-
-        }
       }, err => {
         this.NewCarsdata = err;
       }
       );
     });
-  }
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.NewCarsImageToShow.push(reader.result);
-    }, false);
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-    this.NewCarsArrayOfImages = this.NewCarsImageToShow;
   }
   ngOnInit(): void {
     this.getNewCars();

@@ -16,7 +16,7 @@
         <ion-item class="ion-activatable ion-focusable ripple-parent"
             *ngFor="let mvc of AllMostViewsCarsdata; index as i" [routerLink]="['/tabs/car', mvc._id]">
             <ion-thumbnail slot="start">
-                <img [src]='AllCarsArrayOfImages[i]'>
+                <img src="{{url}}/image/{{mvc.Images[0].filename}}">
             </ion-thumbnail>
             <ion-label>{{mvc.Title}}</ion-label>
             <!-- <ion-icon name="star-half-outline" slot="end"></ion-icon> -->

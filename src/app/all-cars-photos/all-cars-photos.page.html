@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="tabs/home"></ion-back-button>
+      </ion-buttons>
+      <ion-title slot="start">{{ 'IMAGES' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="static-images">
+      <ion-row class="ion-align-items-start">
+          <ion-col size="4" *ngFor="let image of AllCarsImagesPath; index as i">
+              <ion-img  src="{{url}}/image/{{image.name}}"></ion-img>
+          </ion-col>
+      </ion-row>
+  </div>
+  <!-- (click)="displayImage(AllCarsImagesPath[i].name)" -->
+
+</ion-content>

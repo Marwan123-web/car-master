@@ -36,13 +36,12 @@ export class carPage implements OnInit {
   changed: any;
   deleted: any;
   image: any;
-  arrayOfImages: Array<any> = [];
-  imageToShow: Array<any> = [];
-  isImageLoading: boolean;
   liked: boolean;
   Notliked: boolean;
   openOrClose: boolean;
   showMore: boolean = false;
+  url: any = "https://cairo-belguim.herokuapp.com";
+  // url: any = "http://192.168.1.7:3000";
   constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
     private sanitizer: DomSanitizer
 
@@ -142,11 +141,6 @@ export class carPage implements OnInit {
       this.changed = err;
     });
   }
-  emptyimageToShow() {
-    //empty your array
-    this.imageToShow.length = 0;
-  }
-
   getcar() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.carId = params.get('carid');
@@ -163,36 +157,11 @@ export class carPage implements OnInit {
         }, err => {
           this.increamented = err;
         });
-
-        let images = this.cardata.Images;
-        // console.log(images);
-        this.emptyimageToShow();
-        for (let i = 0; i < images.length; i++) {
-          this.isImageLoading = true;
-          this.appservices.getCarImages(images[i].filename).subscribe(data => {
-            this.createImageFromBlob(data);
-            this.isImageLoading = false;
-          }, error => {
-            this.isImageLoading = false;
-            console.log(error);
-          });
-        }
       }, err => {
         this.cardata = err;
       });
     });
   }
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.imageToShow.push(reader.result);
-    }, false);
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-    this.arrayOfImages = this.imageToShow;
-  }
-
   navigateToHome() {
     this.router.navigate(['/tabs/home']);
   }

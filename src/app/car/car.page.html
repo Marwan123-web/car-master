@@ -18,9 +18,9 @@
     <div *ngIf="cardata">
         <ion-list>
             <ion-slides pager="true" [options]="slideOpts">
-                <ion-slide *ngFor="let image of arrayOfImages">
+                <ion-slide *ngFor="let image of cardata.Images">
                     <ion-grid class="car-grid">
-                        <ion-img [src]='image' class="car-page-img"></ion-img>
+                        <ion-img src="{{url}}/image/{{image.filename}}" class="car-page-img"></ion-img>
                     </ion-grid>
                 </ion-slide>
 
