@@ -8,9 +8,9 @@
 </ion-header>
 <ion-content>
     <!-- <img  src="../../assets/img/No Results1.png"> -->
-    <ion-list>
-        <ion-item ion-long-press class="ion-activatable ion-focusable ripple-parent"
-            *ngFor="let mf of myFavourites; index as i" [routerLink]="['/tabs/car', mf.x._id]">
+    <ion-list lines="none">
+        <ion-item ion-long-press class="ion-activatable ion-focusable ripple-parent"[color]="even? '' : 'light'"
+            *ngFor="let mf of myFavourites; index as i; let even = even" [routerLink]="['/tabs/profile/favourites/car', mf.x._id]">
             <ion-thumbnail slot="end">
                 <img src="{{url}}/image/{{mf.x.Images[0].filename}}">
             </ion-thumbnail>

@@ -24,14 +24,14 @@
 
     <ion-row style="text-align: center;">
         <ion-col size="6">
-            <div class="div1" [routerLink]="['/tabs/new-cars']">
+            <div class="div1" [routerLink]="['/tabs/home/new-cars']">
                 <ion-icon name="car-sport-outline"></ion-icon>
                 <br>
                 <p>{{ 'NEWCARS' | translate }}</p>
             </div>
         </ion-col>
         <ion-col size="6">
-            <div class="div1" [routerLink]="['/tabs/preowned-cars']">
+            <div class="div1" [routerLink]="['/tabs/home/preowned-cars']">
                 <ion-icon name="car-outline"></ion-icon>
                 <br>
                 <p>{{ 'PREOWNEDCARS' | translate }}</p>
@@ -40,14 +40,14 @@
     </ion-row>
     <ion-row style="text-align: center;" id="row2">
         <ion-col size="6">
-            <div class="div1" [routerLink]="['/tabs/all-cars-photos']">
+            <div class="div1" [routerLink]="['/tabs/home/all-cars-photos']">
                 <ion-icon name="images-outline"></ion-icon>
                 <br>
                 <p>{{ 'CARIMAGES' | translate }}</p>
             </div>
         </ion-col>
         <ion-col size="6">
-            <div class="div1" [routerLink]="['/tabs/reviews']">
+            <div class="div1" [routerLink]="['/tabs/home/reviews']">
                 <ion-icon name="eye-outline"></ion-icon>
                 <br>
                 <p>{{ 'ALLCARS' | translate }}</p>
@@ -60,7 +60,7 @@
             <ion-slides pager="true" [options]="slideOpts">
                 <ion-slide *ngFor="let rc of RecentCarsdata; index as i">
                     <ion-grid class="home-grid">
-                        <a [routerLink]="['/tabs/car', rc._id]">
+                        <a [routerLink]="['/tabs/home/car', rc._id]">
                             <ion-img src="{{url}}/image/{{rc.Images[0].filename}}" class="car-home-image"></ion-img>
                             <ion-row class="car-name">
                                 <ion-col>
@@ -84,7 +84,7 @@
             <ion-slides pager="true" [options]="slideOpts1">
                 <ion-slide *ngFor="let mvc of MostViewsCarsdata; index as i">
                     <ion-grid class="home-grid">
-                        <a [routerLink]="['/tabs/car', mvc._id]">
+                        <a [routerLink]="['/tabs/home/car', mvc._id]">
                             <ion-img src="{{url}}/image/{{mvc.Images[0].filename}}" class="car-home-image"></ion-img>
                             <ion-row class="car-name">
                                 <ion-col>

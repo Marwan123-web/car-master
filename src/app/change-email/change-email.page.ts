@@ -83,7 +83,7 @@ export class changeEmailPage implements OnInit {
 
   }
   navigateToSettings() {
-    this.router.navigate(['/tabs/settings']);
+    this.router.navigate(['/tabs/profile/settings']);
   }
   languageChanged() {
     this.translateConfigService.setLanguage(this.selectedLanguage);

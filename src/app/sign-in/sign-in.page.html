@@ -12,42 +12,47 @@
     <form id="login-form" [formGroup]="validations_form" (ngSubmit)="loginUser()">
         <ion-list>
             <ion-item>
-                <ion-label>
-                    {{ 'EMAIL' | translate }}
-                </ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-input inputmode="email" placeholder="{{ 'ENTEREMAIL' | translate }}" formControlName="email" id="emailinput" #email required></ion-input>
+                <ion-icon name="mail-outline" slot="start"></ion-icon>
+                <ion-input inputmode="email" placeholder="{{ 'EMAIL' | translate }}" formControlName="email"
+                    id="emailinput" #email required></ion-input>
             </ion-item>
             <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.email">
-                    <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                    <div class="error-message"
+                        *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
                         <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
                     </div>
                 </ng-container>
             </div>
+
+
             <ion-item>
-                <ion-label>
-                    {{ 'PASSWORD' | translate }}
-                </ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-input [type]="showPassword ? 'text' : 'password'" id="passwordinput" formControlName="password" placeholder="{{ 'ENTERPASSWORD' | translate }}" #password required></ion-input>
+                <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+                <ion-input [type]="showPassword ? 'text' : 'password'" id="passwordinput" formControlName="password"
+                    placeholder="{{ 'PASSWORD' | translate }}" #password required></ion-input>
                 <ion-icon [name]="passwordToggleIcon" slot="end" (click)="togglePassword()"></ion-icon>
             </ion-item>
             <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.password">
-                    <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                    <div class="error-message"
+                        *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
                         <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
                     </div>
                 </ng-container>
             </div>
             <br>
-            <ion-button type="submit" expand="block" [disabled]="!validations_form.valid" class="ionBtn ionBtn-success" value="Login">
+            <ion-button type="submit" expand="block" [disabled]="!validations_form.valid" class="ionBtn ionBtn-success"
+                value="Login">
                 <ion-icon name="log-in" slot="start"></ion-icon>
                 {{ 'LOGIN' | translate }}
             </ion-button>
-            <a [routerLink]="['/sign-up']" class="button button-positive button-block button-clear">{{ 'ORCREATEANACCOUNT' | translate}}</a>
+            <h5 class="center">{{ 'ORCREATEANACCOUNT' | translate}}</h5>
+
+            <ion-button [routerLink]="['/sign-up']" expand="block" class="ionBtn ionBtn-success" value="Signup">
+                <ion-icon name="add" slot="start"></ion-icon>
+                {{ 'SIGNUP' | translate }}
+            </ion-button>
         </ion-list>
+
     </form>
 </ion-content>

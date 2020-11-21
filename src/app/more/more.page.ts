@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { TranslateConfigService } from '../services/translate-config.service';
 
 @Component({
@@ -9,10 +10,12 @@ import { TranslateConfigService } from '../services/translate-config.service';
 export class morePage implements OnInit {
   selectedLanguage: any;
   DefaultLangValue: string;
-  constructor(private translateConfigService: TranslateConfigService) {
-    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+  constructor(private translateConfigService: TranslateConfigService,
+    public translate: TranslateService) {
+    this.selectedLanguage = translate.currentLang
+
   }
-  
+
 
   languageChanged() {
     this.translateConfigService.setLanguage(this.selectedLanguage);

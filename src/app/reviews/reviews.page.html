@@ -12,10 +12,10 @@
             refreshingSpinner="crescent">
         </ion-refresher-content>
     </ion-refresher>
-    <ion-list>
-        <ion-item class="ion-activatable ion-focusable ripple-parent"
-            *ngFor="let mvc of AllMostViewsCarsdata; index as i" [routerLink]="['/tabs/car', mvc._id]">
-            <ion-thumbnail slot="start">
+    <ion-list lines="none">
+        <ion-item class="ion-activatable ion-focusable ripple-parent" [color]="even? '' : 'light'"
+            *ngFor="let mvc of AllMostViewsCarsdata; index as i; let even = even" [routerLink]="['/tabs/home/reviews/car', mvc._id]">
+            <ion-thumbnail slot="end">
                 <img src="{{url}}/image/{{mvc.Images[0].filename}}">
             </ion-thumbnail>
             <ion-label>{{mvc.Title}}</ion-label>

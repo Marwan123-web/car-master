@@ -7,9 +7,9 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-list>
-        <ion-item class="ion-activatable ion-focusable ripple-parent" *ngFor="let sc of searched; index as i"
-            [routerLink]="['/tabs/car', sc._id]">
+    <ion-list lines="none">
+        <ion-item class="ion-activatable ion-focusable ripple-parent" [color]="even? '' : 'light'"
+            *ngFor="let sc of searched; index as i; let even = even" [routerLink]="['/tabs/search/car', sc._id]">
             <ion-thumbnail slot="end">
                 <img src="{{url}}/image/{{sc.Images[0].filename}}">
             </ion-thumbnail>
