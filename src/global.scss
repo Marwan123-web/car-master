@@ -31,11 +31,26 @@
 .error-message{
     color: #ff0015 !important;
     width: 343px !important;
-    height: 20px !important;
+    font-size: 15px!important;
+    ion-icon{
+        font-size:15px !important;
+    }
 }
 ion-header{
     width: 100% !important;
     height: 38px !important;
+}
+ion-input {
+    font-size: 13px !important;
+    --placeholder-font-style:italic !important;
+}
+ion-textarea {
+    font-size: 13px !important;
+    --placeholder-font-style:italic !important;
+}
+ion-select  {
+    font-size: 13px !important;
+    --placeholder-font-style:italic !important;
 }
 .center {
     align-items: center!important;

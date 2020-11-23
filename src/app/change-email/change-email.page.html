@@ -14,14 +14,14 @@
             <div formGroupName="matching_emails">
                 <ion-item id="changeEmail-emailInput">
                     <ion-icon name="mail-outline" slot="start"></ion-icon>
-                    <ion-input inputmode="email" formControlName="email" placeholder="Enter New Email" id="emailinput"
-                        #email required></ion-input>
+                    <ion-input inputmode="email" formControlName="email" placeholder="{{'ENTERNEWEMAIL'|translate}}"
+                        id="emailinput" #email required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.email">
                         <div class="error-message"
                             *ngIf="validations_form.get('matching_emails').get('email').hasError(validation.type) && (validations_form.get('matching_emails').get('email').dirty || validations_form.get('matching_emails').get('email').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message|translate  }}
                         </div>
                     </ng-container>
                 </div>
@@ -29,14 +29,15 @@
 
                 <ion-item id="changeEmail-confirmEmailInput">
                     <ion-icon name="mail-outline" slot="start"></ion-icon>
-                    <ion-input inputmode="email" formControlName="confirm_email" placeholder="Confirm New Email"
-                        id="confirmemailinput" #confirm_email required></ion-input>
+                    <ion-input inputmode="email" formControlName="confirm_email"
+                        placeholder="{{'CONFIRMNEWEMAIL'|translate}}" id="confirmemailinput" #confirm_email required>
+                    </ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.confirm_email">
                         <div class="error-message"
                             *ngIf="validations_form.get('matching_emails').get('confirm_email').hasError(validation.type) && (validations_form.get('matching_emails').get('confirm_email').dirty || validations_form.get('matching_emails').get('confirm_email').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message|translate  }}
                         </div>
                     </ng-container>
                 </div>
@@ -46,15 +47,15 @@
                 <ng-container *ngFor="let validation of validation_messages.matching_emails">
                     <div class="error-message"
                         *ngIf="validations_form.get('matching_emails').hasError(validation.type) && (validations_form.get('matching_emails').get('confirm_email').dirty || validations_form.get('matching_emails').get('confirm_email').touched)">
-                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message|translate  }}
                     </div>
                 </ng-container>
             </div>
 
-            
+
             <ion-item>
                 <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-                <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Enter Your Password"
+                <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="{{'ENTERYOURPASSWORD'|translate}}"
                     formControlName="password" id="passwordinput" #password required></ion-input>
                 <ion-icon [name]="passwordToggleIcon" slot="end" (click)="togglePassword()"></ion-icon>
             </ion-item>
@@ -62,7 +63,7 @@
                 <ng-container *ngFor="let validation of validation_messages.password">
                     <div class="error-message"
                         *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
-                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message|translate  }}
                     </div>
                 </ng-container>
             </div>

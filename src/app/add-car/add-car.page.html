@@ -10,9 +10,9 @@
 <ion-content>
     <form [formGroup]="validations_form" (ngSubmit)="AddNewCarfun()">
         <ion-list>
-            <div class="center">
-                Select images: <input type="file" formControlName="carimages" name="multi-files" multiple
-                    id="input-multi-files" class="form-control-file border" (change)="detectFiles($event)" />
+            <div class="center ion-padding">
+                {{ 'SELECTIMAGES' | translate }} <input type="file" formControlName="carimages" name="multi-files"
+                    multiple id="input-multi-files" class="form-control-file border" (change)="detectFiles($event)" />
             </div>
             <div>
                 <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" id="car-re">
@@ -30,7 +30,7 @@
                 <ng-container *ngFor="let validation of validation_messages.carName">
                     <div class="error-message"
                         *ngIf="validations_form.get('carName').hasError(validation.type) && (validations_form.get('carName').dirty || validations_form.get('carName').touched)">
-                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message| translate  }}
                     </div>
                 </ng-container>
             </div>
@@ -48,7 +48,7 @@
                 <ng-container *ngFor="let validation of validation_messages.kilometers">
                     <div class="error-message"
                         *ngIf="validations_form.get('kilometers').hasError(validation.type) && (validations_form.get('kilometers').dirty || validations_form.get('kilometers').touched)">
-                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message| translate  }}
                     </div>
                 </ng-container>
             </div>
@@ -65,7 +65,7 @@
                 <ng-container *ngFor="let validation of validation_messages.price">
                     <div class="error-message"
                         *ngIf="validations_form.get('price').hasError(validation.type) && (validations_form.get('price').dirty || validations_form.get('price').touched)">
-                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message| translate  }}
                     </div>
                 </ng-container>
             </div>
@@ -125,13 +125,14 @@
                 </ion-item>
                 <ion-item id="NextInspection-NextInspectionInput">
                     <ion-input type="text" formControlName="NextInspection" id="NextInspectioninput1" maxlength="15"
-                        placeholder="Enter Next Inspection Date" #NextInspection required></ion-input>
+                        placeholder="{{ 'ENTERNEXTINSPECTIONDATE' | translate }}" #NextInspection required>
+                    </ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.NextInspection">
                         <div class="error-message"
                             *ngIf="validations_form.get('NextInspection').hasError(validation.type) && (validations_form.get('NextInspection').dirty || validations_form.get('NextInspection').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message| translate  }}
                         </div>
                     </ng-container>
                 </div>
@@ -207,13 +208,13 @@
                 </ion-item>
                 <ion-item id="engineVolume-engineVolumeInput">
                     <ion-input type="number" formControlName="engineVolume" id="engineVolumeinput" maxlength="15"
-                        placeholder="Enter engine Volume" #engineVolume required></ion-input>
+                        placeholder="{{ 'ENTERENGINEVOLUME' | translate }}" #engineVolume required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.engineVolume">
                         <div class="error-message"
                             *ngIf="validations_form.get('engineVolume').hasError(validation.type) && (validations_form.get('engineVolume').dirty || validations_form.get('engineVolume').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message| translate  }}
                         </div>
                     </ng-container>
                 </div>
@@ -226,13 +227,13 @@
                 </ion-item>
                 <ion-item id="driveChain-driveChainInput">
                     <ion-input type="number" formControlName="driveChain" id="driveChaininput" maxlength="15"
-                        placeholder="Enter Drive Chain" #driveChain required></ion-input>
+                        placeholder="{{ 'ENTERDRIVECHAIN' | translate }}" #driveChain required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.driveChain">
                         <div class="error-message"
                             *ngIf="validations_form.get('driveChain').hasError(validation.type) && (validations_form.get('driveChain').dirty || validations_form.get('driveChain').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message| translate  }}
                         </div>
                     </ng-container>
                 </div>
@@ -257,13 +258,13 @@
                 </ion-item>
                 <ion-item id="horsePower-horsePowerInput">
                     <ion-input type="number" formControlName="horsePower" id="horsePowerinput" maxlength="15"
-                        placeholder="Enter Horse Power" #horsePower required></ion-input>
+                        placeholder="{{ 'ENTERHORSEPOWER' | translate }}" #horsePower required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.horsePower">
                         <div class="error-message"
                             *ngIf="validations_form.get('horsePower').hasError(validation.type) && (validations_form.get('horsePower').dirty || validations_form.get('horsePower').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message| translate  }}
                         </div>
                     </ng-container>
                 </div>
@@ -275,13 +276,13 @@
                 </ion-item>
                 <ion-item id="torque-torqueInput">
                     <ion-input type="number" formControlName="torque" id="torqueinput" maxlength="15"
-                        placeholder="Enter Torque" #torque required></ion-input>
+                        placeholder="{{ 'ENTERTORQUE' | translate }}" #torque required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.torque">
                         <div class="error-message"
                             *ngIf="validations_form.get('torque').hasError(validation.type) && (validations_form.get('torque').dirty || validations_form.get('torque').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>
@@ -318,13 +319,13 @@
                 </ion-item>
                 <ion-item id="consumption-consumptionInput">
                     <ion-input type="text" formControlName="consumption" id="consumptioninput"
-                        placeholder="Enter Consumption" #consumption required></ion-input>
+                        placeholder="{{ 'ENTERCONSUMPTION' | translate }}" #consumption required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.consumption">
                         <div class="error-message"
                             *ngIf="validations_form.get('consumption').hasError(validation.type) && (validations_form.get('consumption').dirty || validations_form.get('consumption').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>
@@ -336,13 +337,13 @@
                 </ion-item>
                 <ion-item id="CO2Emission-CO2EmissionInput">
                     <ion-input type="text" formControlName="CO2Emission" id="CO2Emissioninput"
-                        placeholder="Enter CO2 Emission" #CO2Emission required></ion-input>
+                        placeholder="{{ 'ENTERCO2EMISSION' | translate }}" #CO2Emission required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.CO2Emission">
                         <div class="error-message"
                             *ngIf="validations_form.get('CO2Emission').hasError(validation.type) && (validations_form.get('CO2Emission').dirty || validations_form.get('CO2Emission').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>
@@ -390,14 +391,14 @@
                     </ion-label>
                 </ion-item>
                 <ion-item id="brand-brandInput">
-                    <ion-input type="text" formControlName="brand" id="brandinput" placeholder="Enter Car Brand" #brand
-                        required></ion-input>
+                    <ion-input type="text" formControlName="brand" id="brandinput"
+                        placeholder="{{ 'ENTERCARBRAND' | translate }}" #brand required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.brand">
                         <div class="error-message"
                             *ngIf="validations_form.get('brand').hasError(validation.type) && (validations_form.get('brand').dirty || validations_form.get('brand').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>
@@ -408,14 +409,14 @@
                     </ion-label>
                 </ion-item>
                 <ion-item id="model-modelInput">
-                    <ion-input type="text" formControlName="model" id="modelinput" placeholder="Enter Car Model" #model
-                        required></ion-input>
+                    <ion-input type="text" formControlName="model" id="modelinput"
+                        placeholder="{{ 'ENTERCARMODEL' | translate }}" #model required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.model">
                         <div class="error-message"
                             *ngIf="validations_form.get('model').hasError(validation.type) && (validations_form.get('model').dirty || validations_form.get('model').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>
@@ -427,14 +428,15 @@
                 </ion-item>
                 <ion-item id="firstRegistration-firstRegistrationInput">
                     <ion-input type="number" formControlName="firstRegistration" id="firstRegistrationinput1"
-                        maxlength="15" placeholder="Enter Car First Registration Date" #firstRegistration required>
+                        maxlength="15" placeholder="{{ 'ENTERCARFIRSTREGISTRATIONDATE' | translate }}"
+                        #firstRegistration required>
                     </ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.firstRegistration">
                         <div class="error-message"
                             *ngIf="validations_form.get('firstRegistration').hasError(validation.type) && (validations_form.get('firstRegistration').dirty || validations_form.get('firstRegistration').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>
@@ -475,13 +477,14 @@
                 </ion-item>
                 <ion-item id="bodyColorOriginal-bodyColorOriginalInput">
                     <ion-input type="text" formControlName="bodyColorOriginal" id="bodyColorOriginalinput"
-                        placeholder="Enter Body Color Original" #bodyColorOriginal required></ion-input>
+                        placeholder="{{ 'ENTERBODYCOLORORIGINAL' | translate }}" #bodyColorOriginal required>
+                    </ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.bodyColorOriginal">
                         <div class="error-message"
                             *ngIf="validations_form.get('bodyColorOriginal').hasError(validation.type) && (validations_form.get('bodyColorOriginal').dirty || validations_form.get('bodyColorOriginal').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>
@@ -561,13 +564,13 @@
                 </ion-item>
                 <ion-item id="modelCode-modelCodelInput">
                     <ion-input type="text" formControlName="modelCode" id="modelCodeinput"
-                        placeholder="Enter Model Code" #modelCode required></ion-input>
+                        placeholder="{{ 'ENTERMODELCODE' | translate }}" #modelCode required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.modelCode">
                         <div class="error-message"
                             *ngIf="validations_form.get('modelCode').hasError(validation.type) && (validations_form.get('modelCode').dirty || validations_form.get('modelCode').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>
@@ -579,13 +582,13 @@
                 </ion-item>
                 <ion-item id="countryVersion-countryVersionInput">
                     <ion-input type="text" formControlName="countryVersion" id="countryVersioninput"
-                        placeholder="Enter Country Version" #countryVersion required></ion-input>
+                        placeholder="{{ 'ENTERCOUNTRYVERSION' | translate }}" #countryVersion required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.countryVersion">
                         <div class="error-message"
                             *ngIf="validations_form.get('countryVersion').hasError(validation.type) && (validations_form.get('countryVersion').dirty || validations_form.get('countryVersion').touched)">
-                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message | translate }}
                         </div>
                     </ng-container>
                 </div>

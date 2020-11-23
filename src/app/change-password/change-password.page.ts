@@ -54,7 +54,7 @@ export class changePasswordPage implements OnInit {
     };
   }
 
-  constructor(private formBuilder: FormBuilder,public router: Router, private alertservice: AlertService, private translateConfigService: TranslateConfigService, private authenticationService: AuthService, private appservices: AppServicesService,) {
+  constructor(private formBuilder: FormBuilder, public router: Router, private alertservice: AlertService, private translateConfigService: TranslateConfigService, private authenticationService: AuthService, private appservices: AppServicesService,) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     this.currentUser = this.authenticationService.currentUserValue;
   }
@@ -89,7 +89,7 @@ export class changePasswordPage implements OnInit {
 
     this.appservices.comparepassword(this.currentUser._id, this.oldpassword).subscribe(res => {
       this.checked = res;
-      this.appservices.changePassword(this.currentUser._id,  this.password).subscribe(res => {
+      this.appservices.changePassword(this.currentUser._id, this.password).subscribe(res => {
         this.alertservice.showAlert("&#xE876;", "success", res.msg);
         password.value = "";
         confirm_password.value = "";
@@ -115,12 +115,12 @@ export class changePasswordPage implements OnInit {
       password: new FormControl('', Validators.compose([
         Validators.minLength(8),
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ])),
       confirm_password: new FormControl('', Validators.compose([
         Validators.minLength(8),
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ]))
     }, (formGroup: FormGroup) => {
       return changePasswordPage.areEqual(formGroup);
@@ -131,7 +131,7 @@ export class changePasswordPage implements OnInit {
       oldPassword: new FormControl('', Validators.compose([
         Validators.minLength(8),
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ]))
     });
 
@@ -139,19 +139,19 @@ export class changePasswordPage implements OnInit {
 
   validation_messages = {
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 8 characters long.' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
+      { type: 'required', message: 'NEWPASSWORDISREQUIRED' },
+      { type: 'minlength', message: 'PASSWORDMUSTBEATLEAST8CHARACTERSLONG' },
+      // { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
     ],
     'oldPassword': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'pattern', message: 'Your password is wrong' }
+      { type: 'required', message: 'YOURPASSWORDISREQUIRED' },
+      { type: 'minlength', message: 'PASSWORDMUSTBEATLEAST8CHARACTERSLONG' },
     ],
     'confirm_password': [
-      { type: 'required', message: 'Confirm password is required.' }
+      { type: 'required', message: 'CONFIRMNEWPASSWORDISREQUIRED' }
     ],
     'matching_passwords': [
-      { type: 'areEqual', message: 'Password mismatch.' }
+      { type: 'areEqual', message: 'PASSWORDSMISMATCH' }
     ]
 
   };

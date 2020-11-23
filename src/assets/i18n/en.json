@@ -1,6 +1,6 @@
 {
-    "ALLCARS":"All Cars",
-    "CARIMAGES":"Car Images",
+    "ALLCARS": "All Cars",
+    "CARIMAGES": "Car Images",
     "ADDCAR": "Add Car",
     "ADDPHOTO": "Add Photo",
     "ADDRESS": "Address",
@@ -132,7 +132,6 @@
     "WARRANTY": "Warranty",
     "YEAR": "Year",
     "YOURPASSWORD": "Your Password",
-    "ENTERCARBRAND": "Enter Car Brand",
     "KILOMETERSLESSTHAN": "Kilometers Less Than",
     "MODELMORETHAN": "Model More Than",
     "RESERVED": "Reserved",
@@ -193,11 +192,6 @@
     "2 (Red)": "2 (Red)",
     "3 (Yellow)": "3 (Yellow)",
     "4 (Green)": "4 (Green)",
-
-
-
-
-    
     "Air conditioning": "Air conditioning",
     "Air suspension": "Air suspension",
     "Armrest": "Armrest",
@@ -216,7 +210,6 @@
     "Split rear seats": "Split rear seats",
     "Start-stop system": "Start-stop system",
     "Sunroof": "Sunroof",
-
     "Bluetooth": "Bluetooth",
     "CD player": "CD player",
     "Digital radio": "Digital radio",
@@ -227,8 +220,6 @@
     "MP3": "MP3",
     "Radio": "Radio",
     "USB": "USB",
-
-
     "4WD": "4WD",
     "Alloy wheels": "Alloy wheels",
     "Shift paddles": "Shift paddles",
@@ -237,8 +228,6 @@
     "Sport suspension": "Sport suspension",
     "Trailer hitch": "Trailer hitch",
     "Voice Control": "Voice Control",
-
-
     "ABS": "ABS",
     "Alarm system": "Alarm system",
     "Central door lock": "Central door lock",
@@ -256,8 +245,56 @@
     "Traction control": "Traction control",
     "Daytime running lights": "Daytime running lights",
     "Emergency system": "Emergency system",
-    "ENTERPHONENUMBER":"Enter Phone Number",
-    "WELCOME":"Welcome"
-
-
+    "ENTERPHONENUMBER": "Enter Phone Number",
+    "WELCOME": "Welcome",
+    "CARS": "Cars",
+    "ENTERNEWEMAIL": "Enter New Email",
+    "CONFIRMNEWEMAIL": "Confirm New Email",
+    "ENTERYOURPASSWORD": "Enter Your Password",
+    "ENTERNEWPASSWORD": "Enter New Password",
+    "CONFIRMNEWPASSWORD": "Confirm New Password",
+    "ENTERNEXTINSPECTIONDATE": "Enter Next Inspection Date",
+    "ENTERENGINEVOLUME": "Enter engine Volume",
+    "ENTERDRIVECHAIN": "Enter Drive Chain",
+    "ENTERHORSEPOWER": "Enter HorsePower",
+    "ENTERTORQUE": "Enter Torque",
+    "ENTERCONSUMPTION": "Enter Consumption",
+    "ENTERCO2EMISSION": "Enter CO2 Emission",
+    "ENTERCARBRAND": "Enter Car Brand",
+    "ENTERCARMODEL": "Enter Car Model",
+    "ENTERCARFIRSTREGISTRATIONDATE": "Enter Car First Registration Date",
+    "ENTERMODELCODE": "Enter Model Code",
+    "ENTERCOUNTRYVERSION": "Enter Country Version",
+    "ENTERBODYCOLORORIGINAL": "Enter Body Color Original",
+    "SELECTIMAGES": "Select images",
+    "CARNAMEISREQUIRES": "Car Name is required.",
+    "KILOMETERSISREQUIRED": "Kilometers is required.",
+    "PRICEISREQUIRED": "Price is required.",
+    "ENTERNEXTINSPECTIONDATEISREQUIRED": "Next Inspection Date is required.",
+    "DESCRIPTIONISREQUIRED": "Description is required.",
+    "ENGINEVOLUMEISREQUIRED": "Engine Volume is required.",
+    "DRIVECHAINISREQUIRED": "Drive Chain is required.",
+    "HORSEPOWERISREQUIRED": "HorsePower is required.",
+    "TORQUEISREQUIRED": "Torque is required.",
+    "CONSUMPTIONISREQUIRED": "Consumption is required.",
+    "CO2EMISSIONISREQUIRED": "CO2 Emission is required.",
+    "CARBRANDISREQUIRED": "Car Brand is required.",
+    "CARMODELISREQUIRED": "Car Model is required.",
+    "CARFIRSTREGISTRATIONDATEISREQUIRED": "Car First Registration Date is required.",
+    "BODYCOLORORIGINALISREQUIRED": "Body Color Original is required.",
+    "MODELCODEISREQUIRED": "Model Code is required.",
+    "COUNTRYVERSIONISREQUIRED": "Country Version is required.",
+    "NEWPASSWORDISREQUIRED": "New Password is required.",
+    "PASSWORDMUSTBEATLEAST8CHARACTERSLONG": "Password must be at least 8 characters long.",
+    "YOURPASSWORDISREQUIRED": "Your Password is required.",
+    "CONFIRMNEWPASSWORDISREQUIRED": "Confirm New password is required.",
+    "PASSWORDSMISMATCH": "Passwords Mismatch.",
+    "EMAILISREQUIRED": "Email is required.",
+    "PLEASEENTERAVALIDEMAIL": "Please enter a valid email.",
+    "CONFIRMEMAILISREQUIRED": "Confirm email is required.",
+    "EMAILMISMATCH": "Email mismatch.",
+    "PASSWORDISREQUIRED": "Password is required.",
+    "FIRSTNAMEISREQUIRED": "First Name is required.",
+    "LASTNAMEISREQUIRED": "Last Name is required.",
+    "PHONENUMBERISREQUIRED": "Phone Number is required."
 }

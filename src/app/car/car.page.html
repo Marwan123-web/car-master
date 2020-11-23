@@ -19,7 +19,7 @@
         <ion-list>
             <ion-slides pager="true" [options]="slideOpts">
                 <ion-slide *ngFor="let image of cardata.Images">
-                    <ion-grid class="car-grid">
+                    <ion-grid class="car-grid" (click)="openViewer(image.filename)">
                         <ion-img src="{{url}}/image/{{image.filename}}" class="car-page-img"></ion-img>
                     </ion-grid>
                 </ion-slide>

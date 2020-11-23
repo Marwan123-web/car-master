@@ -71,12 +71,12 @@ export class signInPage implements OnInit {
 
   validation_messages = {
     'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Please enter a valid email.' }
+      { type: 'required', message: 'EMAILISREQUIRED' },
+      { type: 'pattern', message: 'PLEASEENTERAVALIDEMAIL' }
     ],
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 8 characters long.' },
+      { type: 'required', message: 'YOURPASSWORDISREQUIRED' },
+      { type: 'minlength', message: 'PASSWORDMUSTBEATLEAST8CHARACTERSLONG' },
     ]
   };
 }

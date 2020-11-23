@@ -9,7 +9,7 @@ export class TranslateConfigService {
   constructor(public translate: TranslateService) { }
 
   getDefaultLanguage(){
-    let language = this.translate.getBrowserLang();
+    let language = 'fr'
     this.translate.setDefaultLang(language);
     return language;
   }

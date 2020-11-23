@@ -12,8 +12,9 @@
             <ion-label>{{ 'LANGUAGES' | translate}}</ion-label>
             <ion-select okText="{{ 'OK' | translate }}" cancelText="{{ 'CANCEL' | translate }}" id="lang"
                 [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()" #lang>
-                <ion-select-option value="en">{{ 'ENGLISH' | translate}}</ion-select-option>
                 <ion-select-option value="fr">{{ 'FRENCH' | translate}}</ion-select-option>
+                <ion-select-option value="en">{{ 'ENGLISH' | translate}}</ion-select-option>
+
             </ion-select>
         </ion-item>
         <ion-item [routerLink]="['/tabs/more/contact-us']">

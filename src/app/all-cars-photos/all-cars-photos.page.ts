@@ -5,6 +5,8 @@ import { TranslateConfigService } from '../services/translate-config.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../_models';
 import { AlertService } from '../services/alert.service';
+import { ModalController } from '@ionic/angular';
+import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 @Component({
   selector: 'app-all-cars-photos',
   templateUrl: './all-cars-photos.page.html',
@@ -20,12 +22,26 @@ export class AllCarsPhotosPage implements OnInit {
   imageToShow: Array<any> = [];
   url: any = "https://cairo-belguim.herokuapp.com";
   // url: any = "http://192.168.1.7:3000";
-  constructor(private authservice: AuthService, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
+  constructor(private authservice: AuthService, public modalController: ModalController, private appservices: AppServicesService, private router: Router, private translateConfigService: TranslateConfigService, private route: ActivatedRoute, private alertservice: AlertService, private _Activatedroute: ActivatedRoute,
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     if (this.authservice.currentUserValue) {
       this.currentUser = this.authservice.currentUserValue;
     }
+  }
+  async openViewer(imageurl) {
+    const modal = await this.modalController.create({
+      component: ViewerModalComponent,
+      componentProps: {
+        src: this.url+"/image/"+imageurl
+      },
+      cssClass: 'ion-img-viewer',
+      keyboardClose: true,
+      showBackdrop: true,
+      swipeToClose:true,
+    });
+
+    return await modal.present();
   }
   getAllCarsImages() {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {

@@ -10,7 +10,7 @@
   <div class="static-images">
       <ion-row class="ion-align-items-start">
           <ion-col size="4" *ngFor="let image of AllCarsImagesPath; index as i">
-              <ion-img  src="{{url}}/image/{{image.name}}"></ion-img>
+              <ion-img  src="{{url}}/image/{{image.name}}" (click)="openViewer(image.name)"></ion-img>
           </ion-col>
       </ion-row>
   </div>

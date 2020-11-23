@@ -118,7 +118,7 @@ export class changeEmailPage implements OnInit {
       password: new FormControl('', Validators.compose([
         Validators.minLength(8),
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ]))
     });
 
@@ -127,20 +127,20 @@ export class changeEmailPage implements OnInit {
 
   validation_messages = {
     'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Please enter a valid email.' }
+      { type: 'required', message: 'EMAILISREQUIRED' },
+      { type: 'pattern', message: 'PLEASEENTERAVALIDEMAIL' }
     ],
     'confirm_email': [
-      { type: 'required', message: 'Confirm email is required.' },
-      { type: 'pattern', message: 'Please enter a valid email.' }
+      { type: 'required', message: 'CONFIRMEMAILISREQUIRED' },
+      { type: 'pattern', message: 'PLEASEENTERAVALIDEMAIL' }
     ],
     'matching_emails': [
-      { type: 'areEqual', message: 'Email mismatch.' }
+      { type: 'areEqual', message: 'EMAILMISMATCH' }
     ],
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 8 characters long.' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
+      { type: 'required', message: 'YOURPASSWORDISREQUIRED' },
+      { type: 'minlength', message: 'PASSWORDMUSTBEATLEAST8CHARACTERSLONG' },
+      // { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
     ]
   };
 }

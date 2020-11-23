@@ -464,58 +464,58 @@ export class addCarPage implements OnInit {
 
   validation_messages = {
     'carName': [
-      { type: 'required', message: 'Car Name is required.' }
+      { type: 'required', message: 'CARNAMEISREQUIRES' }
     ],
     'kilometers': [
-      { type: 'required', message: 'Kilometers is required.' },
+      { type: 'required', message: 'KILOMETERSISREQUIRED' },
       // { type: 'min', message: 'Kilometers must be at least 0.' },
     ],
     'price': [
-      { type: 'required', message: 'Price is required.' },
+      { type: 'required', message: 'PRICEISREQUIRED' },
       // { type: 'min', message: 'Price must be at least 0.' },
     ],
     'NextInspection': [
-      { type: 'required', message: 'Next Inspection Date is required.' }
+      { type: 'required', message: 'ENTERNEXTINSPECTIONDATEISREQUIRED' }
     ],
     'description': [
-      { type: 'required', message: 'Description is required.' }
+      { type: 'required', message: 'DESCRIPTIONISREQUIRED' }
     ],
     'engineVolume': [
-      { type: 'required', message: 'Engine Volume is required.' },
+      { type: 'required', message: 'ENGINEVOLUMEISREQUIRED' },
     ],
     'driveChain': [
-      { type: 'required', message: 'Drive Chain is required.' },
+      { type: 'required', message: 'DRIVECHAINISREQUIRED' },
     ],
     'horsePower': [
-      { type: 'required', message: 'Horse Power is required.' },
+      { type: 'required', message: 'HORSEPOWERISREQUIRED' },
     ],
     'torque': [
-      { type: 'required', message: 'Torque is required.' },
+      { type: 'required', message: 'TORQUEISREQUIRED' },
     ],
 
     'consumption': [
-      { type: 'required', message: 'Consumption is required.' },
+      { type: 'required', message: 'CONSUMPTIONISREQUIRED' },
     ],
     'CO2Emission': [
-      { type: 'required', message: 'CO2 Emission is required.' },
+      { type: 'required', message: 'CO2EMISSIONISREQUIRED' },
     ],
     'brand': [
-      { type: 'required', message: 'Car Brand is required.' },
+      { type: 'required', message: 'CARBRANDISREQUIRED' },
     ],
     'model': [
-      { type: 'required', message: 'Car Model is required.' },
+      { type: 'required', message: 'CARMODELISREQUIRED' },
     ],
     'firstRegistration': [
-      { type: 'required', message: 'Car First Registration Date is required.' },
+      { type: 'required', message: 'CARFIRSTREGISTRATIONDATEISREQUIRED' },
     ],
     'bodyColorOriginal': [
-      { type: 'required', message: 'Body Color Original is required.' },
+      { type: 'required', message: 'BODYCOLORORIGINALISREQUIRED' },
     ],
     'modelCode': [
-      { type: 'required', message: 'Model Code is required.' },
+      { type: 'required', message: 'MODELCODEISREQUIRED' },
     ],
     'countryVersion': [
-      { type: 'required', message: 'Country Version is required.' },
+      { type: 'required', message: 'COUNTRYVERSIONISREQUIRED' },
     ],
   };
 

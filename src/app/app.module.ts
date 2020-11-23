@@ -15,12 +15,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Globalization } from '@ionic-native/globalization/ngx';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [HttpClientModule, BrowserModule, TranslateModule.forRoot({
+  imports: [NgxIonicImageViewerModule, HttpClientModule, BrowserModule, TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,
       useFactory: (LanguageLoader),

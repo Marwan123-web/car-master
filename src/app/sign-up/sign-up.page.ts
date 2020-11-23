@@ -81,7 +81,7 @@ export class signUpPage {
       password: new FormControl('', Validators.compose([
         Validators.minLength(8),
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ])),
       phoneNumber: new FormControl('', Validators.compose([
         Validators.minLength(8),
@@ -94,22 +94,22 @@ export class signUpPage {
 
   validation_messages = {
     'firstName': [
-      { type: 'required', message: 'First Name is required.' }
+      { type: 'required', message: 'FIRSTNAMEISREQUIRED' }
     ],
     'lastName': [
-      { type: 'required', message: 'Last Name is required.' }
+      { type: 'required', message: 'LASTNAMEISREQUIRED' }
     ],
     'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Please enter a valid email.' }
+      { type: 'required', message: 'EMAILISREQUIRED' },
+      { type: 'pattern', message: 'PLEASEENTERAVALIDEMAIL' }
     ],
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 8 characters long.' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
+      { type: 'required', message: 'PASSWORDISREQUIRED' },
+      { type: 'minlength', message: 'PASSWORDMUSTBEATLEAST8CHARACTERSLONG' },
+      // { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
     ],
     'phoneNumber': [
-      { type: 'required', message: 'Phone Number is required.' }
+      { type: 'required', message: 'PHONENUMBERISREQUIRED' }
     ],
   };
 
