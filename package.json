@@ -4,12 +4,12 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
-    "ng": "ng",  
-    "start": "node server.js",  
-    "build": "ng build",  
-    "test": "ng test",  
-    "lint": "ng lint",  
-    "e2e": "ng e2e",  
+    "ng": "ng",
+    "start": "node server.js",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
     "postinstall": "ng build --prod"
   },
   "engines": {
@@ -48,10 +48,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    
-   
     "@angular/compiler": "~10.1.4",
-    
     "@angular/language-service": "~10.1.4",
     "@capacitor/cli": "2.4.0",
     "@ionic/angular-toolkit": "^2.3.0",
